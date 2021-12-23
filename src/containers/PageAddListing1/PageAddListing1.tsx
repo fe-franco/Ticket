@@ -316,7 +316,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
               />
             </svg>
 
-            <span className="ml-3">Publicar</span>
+            <span className="ml-3">Publiasdasdascar</span>
           </ButtonPrimary>
         </div>
     </div>
