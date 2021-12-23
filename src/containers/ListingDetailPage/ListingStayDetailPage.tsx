@@ -731,7 +731,7 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({
           <div className="relative py-16">
             <BackgroundSection />
             <SectionSliderNewCategories
-              heading="alala outros eventros"
+              heading="testese outros eventros"
               subHeading="Eventos de categorias semelhantes"
               categoryCardType="card5"
               itemPerRow={5}
