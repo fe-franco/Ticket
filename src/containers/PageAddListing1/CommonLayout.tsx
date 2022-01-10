@@ -9,7 +9,7 @@ export interface CommonLayoutProps {
 const CommonLayout: FC<CommonLayoutProps> = ({ index = "01", children }) => {
   return (
     <div
-      className={`nc-PageAddListing1 justify-items: center px-4 max-w-3xl pb-10 pt-10 sm:py-10 lg:pb-10`}
+      className={`nc-PageAddListing1 justify-items: center px-8 max-w-3xl pb-10 pt-10 sm:py-10 lg:pb-10`}
       data-nc-id="PageAddListing1"
       style={{minWidth:'40%'}}
     >

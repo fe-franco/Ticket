@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import Input from "shared/Input/Input";
 import Select from "shared/Select/Select";
 import CommonLayout from "./CommonLayout";
+import ButtonLayout from "./buttonLayout";
 import FormItem from "./FormItem";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import LocationMarker from "components/AnyReactComponent/LocationMarker";
@@ -47,22 +48,22 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     );
   };
   return (
-    <div className="mt-6 place-content-stretch grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2">
-      <CommonLayout index="1 .Informações do evento">
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 place-content-end">
+      <CommonLayout index="1. Informações do evento">
         <>
           {/* FORM */}
           <div className="space-y-8">
+          <div className="col-span-2 justify-items-end ">
+                <label className="text-lg font-semibold" htmlFor="">
+                  Selecione o tipo de evento🎭
+                </label>
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {renderRadio("Encerrar", "Presencial", "Presencial", true)}
+                  {renderRadio("Encerrar", "Live", "Live")}
+                  {renderRadio("Encerrar", "Videoconferência", "Videoconferência")}
+                </div>
+              </div>
             {/* ITEM */}
-            <FormItem
-              label="Selecione o tipo de evento"
-              desc="O modo em que o evento será feito: Presencialmente, Videoconferência, Live"
-            >
-              <Select>
-                <option value="Presencialmente">Presencialmente</option>
-                <option value="Videoconferência">Videoconferência</option>
-                <option value="Live">Live</option>
-              </Select>
-            </FormItem>
             <FormItem label="Nome do evento">
               <Input />
             </FormItem>
@@ -157,7 +158,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
           </div>
         </>
       </CommonLayout>
-      <CommonLayout index="2 . Descrição do Evento">
+      <CommonLayout index="2. Descrição do Evento">
         <>
           <div>
             <h2 className="text-2xl font-semibold">Fale sobre seu evento📣</h2>
@@ -222,10 +223,10 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
           {/* FORM */}
           <div className="space-y-8">
             <div className="flex items-center mt-6 grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-6 gap-5">
-              <FormItem label="Nome do Ingresso" className="col-span-3">
+              <FormItem label="Nome do Ingresso" className="col-span-2">
                 <Input placeholder="Ingresso" type="text" />
               </FormItem>
-              <FormItem label="Preço" className="col-span-3">
+              <FormItem label="Preço" className="col-span-2">
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <span className="text-gray-500">$</span>
@@ -247,7 +248,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                 <Checkbox label="Criar Meia-entrada" name="Meia-entrada"/>
               </div>
               {/* ITEM */}
-              <div className="col-span-2 justify-items-end ">
+              <div className="col-span-3 justify-items-end ">
                 <label className="text-lg font-semibold" htmlFor="">
                   Encerrar vendas por
                 </label>
@@ -275,7 +276,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
         </>
         {/* //TODO botao que aciona mais um block de ingresso */}
       </CommonLayout>
-        <div className="justify-items-end">
+      <div className="col-span-2">
           <ButtonSecondary href="/add-listing-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -316,9 +317,10 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
               />
             </svg>
 
-            <span className="ml-3">Publiasdasdascar</span>
+            <span className="ml-3">Publicar</span>
           </ButtonPrimary>
-        </div>
+      </div>
+      
     </div>
   );
 };
