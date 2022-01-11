@@ -15,6 +15,11 @@ import { DateRage } from "components/HeroSearchForm/StaySearchForm";
 import moment from "moment";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import Checkbox from "shared/Checkbox/Checkbox";
+import { TimeRage } from "components/HeroSearchForm/RentalCarSearchForm";
+import { DayPickerRangeController, DayPickerSingleDateController, FocusedInputShape } from "react-dates";
+import useWindowSize from "hooks/useWindowResize";
+import EventDateTimeSingleInput from "components/HeroSearchForm/EventDateInput";
+import EventDateInput from "components/HeroSearchForm/EventDateInput";
 
 export interface PageAddListing1Props {}
 
@@ -23,6 +28,27 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     startDate: moment(),
     endDate: moment().add(4, "days"),
   });
+  
+
+
+  const [selectedDay, setSelectedDay] = useState<moment.Moment | null>(
+    moment().add(2, "days")
+    );
+    // USE STATE
+   const [dateRangeValue, setDateRangeValue] = useState<DateRage>({
+    startDate: moment().add(4, "days"),
+    endDate: null,
+  });
+  const [timeRangeValue, setTimeRangeValue] = useState<TimeRage>({
+    startTime: moment().hour().toString()+":00",
+    endTime: "10:00 AM",
+  });
+
+  const [dateFocused, setDateFocused] = useState<boolean>(false);
+  const windowSize = useWindowSize();
+
+
+
   const renderRadio = (
     name: string,
     id: string,
@@ -64,9 +90,24 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                 </div>
               </div>
             {/* ITEM */}
-            <FormItem label="Nome do evento">
-              <Input />
-            </FormItem>
+            <div className="grid grid-cols-2  gap-16">
+              <FormItem className=""  label="Nome do evento">
+                <Input />
+              </FormItem>
+              <EventDateInput className=""
+              defaultValue={selectedDay}
+              defaultTimeValue={timeRangeValue}
+              defaultFocus={dateFocused}
+              onFocusChange={(focus: boolean) => {
+                setDateFocused(focus);
+              }}
+              onChange={(data) => {
+                setSelectedDay(data.startDate);
+                setTimeRangeValue(data.stateTimeRage);
+              }}
+            anchorDirection={windowSize.width > 1400 ? "left" : "right"}
+            />
+            </div>
             <FormItem label="Categoria do evento">
               <Select>
                 <option value="Acadêmico e científico">
@@ -276,7 +317,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
         </>
         {/* //TODO botao que aciona mais um block de ingresso */}
       </CommonLayout>
-      <div className="col-span-2" style={{width:"100%",display: "flex",justifyContent: "center",alignItems: "center"}}>
+      <div className={window.innerWidth>600?"col-span-2":"col-span-1"} style={{width:"100%",display: "flex",justifyContent: "center",alignItems: "center", }}>
           <ButtonSecondary href="/add-listing-1"className="mx-5 sm:mx-1 my-5 min-width-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
