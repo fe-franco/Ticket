@@ -338,7 +338,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
         </>
         {/* //TODO botao que aciona mais um block de ingresso */}
       </CommonLayout>
-      <div className={window.innerWidth>800?"col-span-2":"col-span-1"} style={{width:"100%",display: "flex",justifyContent: "center",alignItems: "center", }}>
+      <div className={window.innerWidth>800?"col-span-2 w-full flex justify-center items-center":"col-span-1"}>
           <ButtonSecondary href="/add-listing-1"className="mx-5 sm:mx-1 my-5 min-width-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
