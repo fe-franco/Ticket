@@ -20,6 +20,9 @@ import { DayPickerRangeController, DayPickerSingleDateController, FocusedInputSh
 import useWindowSize from "hooks/useWindowResize";
 import EventDateTimeSingleInput from "components/HeroSearchForm/EventDateInput";
 import EventDateInput from "components/HeroSearchForm/EventDateInput";
+import RentalCarDatesRangeInput from "components/HeroSearchForm/RentalCarDatesRangeInput";
+import TicketDatesRangeInput from "components/HeroSearchForm/TicketDatesRangeInput";
+import TicketForm from "components/HeroSearchForm/TicketForm";
 
 export interface PageAddListing1Props {}
 
@@ -29,6 +32,14 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     endDate: moment().add(4, "days"),
   });
   
+  const [TicketdateRangeValue, TicketsetDateRangeValue] = useState<DateRage>({
+    startDate: moment(),
+    endDate: moment().add(4, "days"),
+  });
+  const [TickettimeRangeValue, TicketsetTimeRangeValue] = useState<TimeRage>({
+    startTime: "10:00 AM",
+    endTime: "10:00 AM",
+  });
 
 
   const [selectedDay, setSelectedDay] = useState<moment.Moment | null>(
@@ -47,6 +58,9 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
   const [dateFocused, setDateFocused] = useState<boolean>(false);
   const windowSize = useWindowSize();
 
+  const currentTab=""
+  const currentPage=""
+  const isArchivePage = !!currentPage && !!currentTab;
 
 
   const renderRadio = (
@@ -74,7 +88,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     );
   };
   return (
-    <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 place-content-end">
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2">
       <CommonLayout index="1. Informações do evento">
         <>
           {/* FORM */}
@@ -83,18 +97,19 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                 <label className="text-lg font-semibold" htmlFor="">
                   Selecione o tipo de evento🎭
                 </label>
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3">
                   {renderRadio("Encerrar", "Presencial", "Presencial", true)}
                   {renderRadio("Encerrar", "Live", "Live")}
                   {renderRadio("Encerrar", "Videoconferência", "Videoconferência")}
                 </div>
               </div>
             {/* ITEM */}
-            <div className="grid grid-cols-2  gap-16">
-              <FormItem className=""  label="Nome do evento">
-                <Input />
+            <div className={window.innerWidth>600?"flex items-strech space-x-10":""}>
+              <FormItem className={window.innerWidth>600?"w-1/2":"w-full pb-8"}  label="Nome do evento">
+                <Input/>
               </FormItem>
-              <EventDateInput className=""
+              <EventDateInput
+              label="Data do evento"
               defaultValue={selectedDay}
               defaultTimeValue={timeRangeValue}
               defaultFocus={dateFocused}
@@ -108,7 +123,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
             anchorDirection={windowSize.width > 1400 ? "left" : "right"}
             />
             </div>
-            <FormItem label="Categoria do evento">
+            <FormItem label="Categoria">
               <Select>
                 <option value="Acadêmico e científico">
                   Acadêmico e científico
@@ -303,12 +318,18 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
             </div>
           </div>
           <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
-            <StayDatesRangeInput
-              onChange={(date) => setSelectedDate(date)}
-              numberOfMonths={1}
-              fieldClassName="p-5"
-              defaultValue={selectedDate}
-              anchorDirection={window.innerWidth > 1400 ? "left" : "right"}
+            <TicketDatesRangeInput
+             defaultDateValue={TicketdateRangeValue}
+             defaultTimeValue={TickettimeRangeValue}
+             onFocusChange={() => {}}
+             numberOfMonths={1}
+             fieldClassName="p-5"
+             wrapFieldClassName="flex flex-col w-full flex-shrink-0 relative divide-y divide-neutral-200 dark:divide-neutral-700"
+             onChange={(data) => {
+               TicketsetDateRangeValue(data.stateDate);
+               TicketsetTimeRangeValue(data.stateTimeRage);
+             }}
+             anchorDirection={windowSize.width > 1400 ? "left" : "right"}
             />
           </form>
           <FormItem label="Descrição do ingresso">
@@ -317,7 +338,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
         </>
         {/* //TODO botao que aciona mais um block de ingresso */}
       </CommonLayout>
-      <div className={window.innerWidth>600?"col-span-2":"col-span-1"} style={{width:"100%",display: "flex",justifyContent: "center",alignItems: "center", }}>
+      <div className={window.innerWidth>800?"col-span-2":"col-span-1"} style={{width:"100%",display: "flex",justifyContent: "center",alignItems: "center", }}>
           <ButtonSecondary href="/add-listing-1"className="mx-5 sm:mx-1 my-5 min-width-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"

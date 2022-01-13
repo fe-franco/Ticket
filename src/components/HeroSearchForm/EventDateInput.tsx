@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SingleDatePicker, AnchorDirectionShape } from "react-dates";
 import { FC } from "react";
-import ClearDataButton from "./ClearDataButton";
 import moment from "moment";
 import useWindowSize from "hooks/useWindowResize";
 import { TimeRage } from "./RentalCarSearchForm";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
+import Label from "components/Label/Label";
+
 
 export interface EventDateInputProps {
+  label?:string
   defaultValue: moment.Moment | null;
   defaultTimeValue: TimeRage;
   onChange?: (date: { startDate: moment.Moment | null ; stateTimeRage: TimeRage}) => void;
@@ -22,10 +24,11 @@ export interface EventDateInputProps {
 type Fields = "pickUp" | "dropOff";
 
 const EventDateInput: FC<EventDateInputProps> = ({
+  label,
   defaultValue,
   defaultTimeValue,
   onChange,
-  defaultFocus = false,
+  defaultFocus = true,
   onFocusChange,
   anchorDirection,
   className = "",
@@ -51,9 +54,6 @@ const EventDateInput: FC<EventDateInputProps> = ({
     }
   }, [startDate]);
 
-  const handleClearData = () => {
-    setStartDate(null);
-  };
 
   const handleDateFocusChange = (arg: { focused: boolean }) => {
     setFocusedInput(arg.focused);
@@ -127,14 +127,14 @@ const EventDateInput: FC<EventDateInputProps> = ({
         as="div"
         className="relative flex-shrink-0"
       >
-        <Listbox.Button className="focus:outline-none inline-flex items-center group">
-          <span className="text-base sm:text-lg font-semibold">
+        <Listbox.Button className="focus:outline-none inline-flex items-center">
+          <span className="block text-neutral-400 leading-none font-light">
             {`, ` + timeValue}
           </span>
 
         </Listbox.Button>
 
-        <Listbox.Options className="absolute z-40 min-w-max py-1 mt-1 overflow-auto text-base bg-white dark:bg-neutral-800 rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+        <Listbox.Options className="absolute z-40 min-w-max overflow-auto text-base bg-white dark:bg-neutral-800 rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
           {times.map((time, index) => (
             <Listbox.Option
               key={index}
@@ -177,12 +177,17 @@ const EventDateInput: FC<EventDateInputProps> = ({
   const renderInputCheckInDate = () => {
     const focused = focusedInput;
     return (
+      <div className="w-full">{label && <Label>{label}</Label>}
       <div
-        className={`flex w-full relative ${fieldClassName} items-center space-x-3 cursor-pointer ${
-          focused ? "shadow-2xl rounded-full" : ""
+        className={`flex mt-1 ${window.innerWidth>600?"h-1":""} w-full rounded-2xl text-sm font-normal h-11 px-4 py-6
+        border border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white 
+        dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-900
+        ${fieldClassName} relative items-center space-x-3 cursor-pointer ${
+          focused ? "shadow-2xl sm:w-16": ""
         }`}
         onClick={() => handleDateFocusChange({ focused: true })}
       >
+        
         <div className="text-neutral-300 dark:text-neutral-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -199,18 +204,14 @@ const EventDateInput: FC<EventDateInputProps> = ({
             />
           </svg>
         </div>
-        <div className="flex-grow grid grid-cols-1">
-          <span className="block xl:text-lg font-semibold  grid grid-cols-2">
+        <div className="flex-grow">
+          <span className="block xl:text-lg font-semibold flex">
             { startDate ? startDate.format("DD MMM").toString() : "Data"}
             {renderEditTime("pickUp")}
           </span>
-          <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-            {startDate ? "Data" : `Add date`}
-          </span>
-          {startDate && focused && (
-            <ClearDataButton onClick={() => handleClearData()} />
-          )}
+          {startDate && focused}
         </div>
+      </div>
       </div>
     );
   };
@@ -228,7 +229,6 @@ const EventDateInput: FC<EventDateInputProps> = ({
           onFocusChange={handleDateFocusChange}
           noBorder
           hideKeyboardShortcutsPanel
-          keepOpenOnDateSelect
           numberOfMonths={1}
           anchorDirection={anchorDirection}
         />

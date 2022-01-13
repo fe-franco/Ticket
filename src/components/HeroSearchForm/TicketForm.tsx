@@ -16,11 +16,11 @@ export interface TimeRage {
   endTime: string;
 }
 
-export interface RentalCarSearchFormProps {
+export interface TicketFormProps {
   haveDefaultValue?: boolean;
 }
 
-const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
+const TicketForm: FC<TicketFormProps> = ({
   haveDefaultValue,
 }) => {
   // DEFAULT DATA FOR ARCHIVE PAGE
@@ -164,4 +164,4 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
   return renderForm();
 };
 
-export default RentalCarSearchForm;
+export default TicketForm;

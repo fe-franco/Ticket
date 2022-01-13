@@ -14,7 +14,7 @@ import useWindowSize from "hooks/useWindowResize";
 
 type Fields = "pickUp" | "dropOff";
 
-export interface RentalCarDatesRangeInputProps {
+export interface TicketDatesRangeInputProps {
   defaultDateValue: DateRage;
   defaultTimeValue: TimeRage;
   defaultFocus?: FocusedInputShape | null;
@@ -26,14 +26,14 @@ export interface RentalCarDatesRangeInputProps {
   anchorDirection?: AnchorDirectionShape;
 }
 
-const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
+const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
   defaultDateValue,
   defaultTimeValue,
   onChange,
   defaultFocus = null,
   onFocusChange,
   fieldClassName = "[ nc-hero-field-padding ]",
-  wrapFieldClassName = "flex flex-col xl:flex-row xl:items-center w-full flex-shrink-0 relative [ nc-divide-field ]",
+  wrapFieldClassName = "flex flex-row xl:flex-row xl:items-center w-full flex-shrink-0 relative [ nc-divide-field ]",
   numberOfMonths,
   anchorDirection,
 }) => {
@@ -222,7 +222,7 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
           </div>
 
           <span className="block mt-1 text-sm text-neutral-400 font-light leading-none">
-            {stateDate.startDate ? "Pick up" : `Add date`}
+            {stateDate.startDate ? "Inicío" : `Add date`}
           </span>
 
           {stateDate.startDate && focused && (
@@ -272,7 +272,7 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
             {stateDate.endDate && renderEditTime("dropOff")}
           </div>
           <span className="block mt-1 text-sm text-neutral-400 font-light leading-none">
-            {stateDate.endDate ? "Drop off" : `Add date`}
+            {stateDate.endDate ? "Final" : `Add date`}
           </span>
           {stateDate.endDate && focused && (
             <ClearDataButton onClick={() => handleClearData("dropOff")} />
@@ -314,4 +314,4 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
   );
 };
 
-export default RentalCarDatesRangeInput;
+export default TicketDatesRangeInput;

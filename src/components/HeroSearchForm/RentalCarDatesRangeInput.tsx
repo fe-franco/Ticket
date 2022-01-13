@@ -79,54 +79,30 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
 
   const renderEditTime = (field: Fields) => {
     const times = [
-      "00:00",
-      "00:30",
-      "1:00",
-      "1:30",
-      "2:00",
-      "2:30",
-      "3:00",
-      "3:30",
-      "4:00",
-      "4:30",
-      "5:00",
-      "5:30",
-      "6:00",
-      "6:30",
-      "7:00",
-      "7:30",
-      "8:00",
-      "8:30",
-      "9:00",
-      "9:30",
-      "10:00",
-      "10:30",
-      "11:00",
-      "11:30",
-      "12:00",
-      "12:30",
-      "13:00",
-      "13:30",
-      "14:00",
-      "14:30",
-      "15:00",
-      "15:30",
-      "16:00",
-      "16:30",
-      "17:00",
-      "17:30",
-      "18:00",
-      "18:30",
-      "19:00",
-      "19:30",
-      "20:00",
-      "20:30",
-      "21:00",
-      "21:30",
-      "22:00",
-      "22:30",
-      "23:00",
-      "23:30",
+      "12:00 AM",
+      "1:00 AM",
+      "2:00 AM",
+      "3:00 AM",
+      "4:00 AM",
+      "5:00 AM",
+      "6:00 AM",
+      "7:00 AM",
+      "8:00 AM",
+      "9:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "12:00 PM",
+      "1:00 PM",
+      "2:00 PM",
+      "3:00 PM",
+      "4:00 PM",
+      "5:00 PM",
+      "6:00 PM",
+      "7:00 PM",
+      "8:00 PM",
+      "9:00 PM",
+      "10:00 PM",
+      "11:00 PM",
     ];
     let timeValue = stateTimeRage.startTime;
     if (field === "dropOff") {
@@ -257,6 +233,54 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
     );
   };
 
+  const renderInputdropOffDate = () => {
+    const focused = focusedInput === "endDate";
+    return (
+      <div
+        className={`flex relative flex-1  ${fieldClassName} flex-shrink-0 items-center space-x-3 cursor-pointer ${
+          focused ? "shadow-2xl rounded-full dark:bg-neutral-800" : " "
+        }`}
+      >
+        <div className="text-neutral-300 dark:text-neutral-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="nc-icon-field"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <div className="flex-grow flex-shrink-0">
+          <div
+            className="absolute inset-0"
+            onClick={() => handleDateFocusChange("endDate")}
+          />
+
+          <div className="inline-flex items-center text-base xl:text-lg font-semibold">
+            <span className="flex-shrink-0">
+              {stateDate.endDate
+                ? stateDate.endDate.format("DD MMM")
+                : "Drop off"}
+            </span>
+            {stateDate.endDate && renderEditTime("dropOff")}
+          </div>
+          <span className="block mt-1 text-sm text-neutral-400 font-light leading-none">
+            {stateDate.endDate ? "Drop off" : `Add date`}
+          </span>
+          {stateDate.endDate && focused && (
+            <ClearDataButton onClick={() => handleClearData("dropOff")} />
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="relative flex-shrink-0 flex nc-flex-2-auto z-10 ">
@@ -284,6 +308,7 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
 
       <div className={wrapFieldClassName}>
         {renderInputpickUpDate()}
+        {renderInputdropOffDate()}
       </div>
     </div>
   );
