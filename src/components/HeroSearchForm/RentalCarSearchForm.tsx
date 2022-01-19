@@ -45,6 +45,7 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
   const [fieldFocused, setFieldFocused] = useState<
     FocusedInputShape | "dropOffInput" | null
   >(null);
+  
   const [dropOffLocationType, setDropOffLocationType] = useState<
     "same" | "different"
   >("same");

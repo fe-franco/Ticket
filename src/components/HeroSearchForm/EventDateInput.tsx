@@ -6,7 +6,7 @@ import useWindowSize from "hooks/useWindowResize";
 import { TimeRage } from "./RentalCarSearchForm";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
-import Label from "components/Label/Label";
+import ClearDataButton from "./ClearDataButton";
 
 
 export interface EventDateInputProps {
@@ -58,6 +58,10 @@ const EventDateInput: FC<EventDateInputProps> = ({
   const handleDateFocusChange = (arg: { focused: boolean }) => {
     setFocusedInput(arg.focused);
     onFocusChange && onFocusChange(arg.focused);
+  };
+
+  const handleClearData = () => {
+    setStartDate(null);
   };
 
   const renderEditTime = (field: Fields) => {
@@ -127,9 +131,25 @@ const EventDateInput: FC<EventDateInputProps> = ({
         as="div"
         className="relative flex-shrink-0"
       >
-        <Listbox.Button className="focus:outline-none inline-flex items-center">
+        <Listbox.Button className="focus:outline-none inline-flex items-center group">
           <span className="block text-neutral-400 leading-none font-light">
             {`, ` + timeValue}
+          </span>
+          <span className="ml-1 absolute left-full top-0 text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
           </span>
 
         </Listbox.Button>
@@ -177,17 +197,12 @@ const EventDateInput: FC<EventDateInputProps> = ({
   const renderInputCheckInDate = () => {
     const focused = focusedInput;
     return (
-      <div className="w-full">{label && <Label>{label}</Label>}
       <div
-        className={`flex mt-1 ${window.innerWidth>600?"h-1":""} w-full rounded-2xl text-sm font-normal h-11 px-4 py-6
-        border border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white 
-        dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-900
-        ${fieldClassName} relative items-center space-x-3 cursor-pointer ${
-          focused ? "shadow-2xl sm:w-16": ""
+        className={`flex w-full relative ${fieldClassName} items-center space-x-3 cursor-pointer ${
+          focused ? "shadow-2xl rounded-full dark:bg-neutral-800" : ""
         }`}
         onClick={() => handleDateFocusChange({ focused: true })}
       >
-        
         <div className="text-neutral-300 dark:text-neutral-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -206,12 +221,16 @@ const EventDateInput: FC<EventDateInputProps> = ({
         </div>
         <div className="flex-grow">
           <span className="block xl:text-lg font-semibold flex">
-            { startDate ? startDate.format("DD MMM").toString() : "Data"}
+            {startDate ? startDate.format("DD MMM") : "Dia"}
             {renderEditTime("pickUp")}
           </span>
-          {startDate && focused}
+          <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
+            {startDate ? "Data" : `Add data`}
+          </span>
+          {startDate && focused && (
+            <ClearDataButton onClick={() => handleClearData()} />
+          )}
         </div>
-      </div>
       </div>
     );
   };

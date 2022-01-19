@@ -79,30 +79,54 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
 
   const renderEditTime = (field: Fields) => {
     const times = [
-      "12:00 AM",
-      "1:00 AM",
-      "2:00 AM",
-      "3:00 AM",
-      "4:00 AM",
-      "5:00 AM",
-      "6:00 AM",
-      "7:00 AM",
-      "8:00 AM",
-      "9:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "12:00 PM",
-      "1:00 PM",
-      "2:00 PM",
-      "3:00 PM",
-      "4:00 PM",
-      "5:00 PM",
-      "6:00 PM",
-      "7:00 PM",
-      "8:00 PM",
-      "9:00 PM",
-      "10:00 PM",
-      "11:00 PM",
+      "00:00",
+      "00:30",
+      "1:00",
+      "1:30",
+      "2:00",
+      "2:30",
+      "3:00",
+      "3:30",
+      "4:00",
+      "4:30",
+      "5:00",
+      "5:30",
+      "6:00",
+      "6:30",
+      "7:00",
+      "7:30",
+      "8:00",
+      "8:30",
+      "9:00",
+      "9:30",
+      "10:00",
+      "10:30",
+      "11:00",
+      "11:30",
+      "12:00",
+      "12:30",
+      "13:00",
+      "13:30",
+      "14:00",
+      "14:30",
+      "15:00",
+      "15:30",
+      "16:00",
+      "16:30",
+      "17:00",
+      "17:30",
+      "18:00",
+      "18:30",
+      "19:00",
+      "19:30",
+      "20:00",
+      "20:30",
+      "21:00",
+      "21:30",
+      "22:00",
+      "22:30",
+      "23:00",
+      "23:30",
     ];
     let timeValue = stateTimeRage.startTime;
     if (field === "dropOff") {
@@ -121,7 +145,7 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
         className="relative flex-shrink-0"
       >
         <Listbox.Button className="focus:outline-none inline-flex items-center group">
-          <span className="text-base sm:text-lg font-semibold">
+          <span className="text-base sm:text-lg text-neutral-400 leading-none font-light">
             {`, ` + timeValue}
           </span>
           <span className="ml-1 absolute left-full top-0 text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100">
@@ -187,7 +211,7 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
     return (
       <div
         className={`flex flex-1 relative  ${fieldClassName} flex-shrink-0 items-center space-x-3 cursor-pointer ${
-          focused ? "shadow-2xl rounded-full dark:bg-neutral-800" : " "
+          focused ? "shadow rounded-3xl dark:bg-neutral-800" : " "
         }`}
       >
         <div className="text-neutral-300 dark:text-neutral-400">
@@ -222,7 +246,7 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
           </div>
 
           <span className="block mt-1 text-sm text-neutral-400 font-light leading-none">
-            {stateDate.startDate ? "Inicío" : `Add date`}
+            {stateDate.startDate ? "Inicío" : `Data`}
           </span>
 
           {stateDate.startDate && focused && (
@@ -238,7 +262,7 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
     return (
       <div
         className={`flex relative flex-1  ${fieldClassName} flex-shrink-0 items-center space-x-3 cursor-pointer ${
-          focused ? "shadow-2xl rounded-full dark:bg-neutral-800" : " "
+          focused ? "shadow-2xl rounded-3xl dark:bg-neutral-800" : " "
         }`}
       >
         <div className="text-neutral-300 dark:text-neutral-400">
@@ -267,12 +291,12 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
             <span className="flex-shrink-0">
               {stateDate.endDate
                 ? stateDate.endDate.format("DD MMM")
-                : "Drop off"}
+                : "Data Final"}
             </span>
             {stateDate.endDate && renderEditTime("dropOff")}
           </div>
           <span className="block mt-1 text-sm text-neutral-400 font-light leading-none">
-            {stateDate.endDate ? "Final" : `Add date`}
+            {stateDate.endDate ? "Final" : `Add data`}
           </span>
           {stateDate.endDate && focused && (
             <ClearDataButton onClick={() => handleClearData("dropOff")} />

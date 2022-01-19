@@ -17,7 +17,7 @@ const FormItem: FC<FormItemProps> = ({
   return (
     <div className={className}>
       {label && <Label>{label}</Label>}
-      <div className="mt-1">{children}</div>
+      <div className="mt-2">{children}</div>
       {desc && (
         <span className="block mt-3 text-xs text-neutral-500 dark:text-neutral-400 ">
           {desc}
