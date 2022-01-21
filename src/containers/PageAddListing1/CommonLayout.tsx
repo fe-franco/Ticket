@@ -5,19 +5,24 @@ import { FC } from "react";
 export interface CommonLayoutProps {
   index: string;
   nextBtnText?: string;
+  className?: string;
 }
 
 
-const CommonLayout: FC<CommonLayoutProps> = ({ index = "01", children }) => {
-  const windowSize = useWindowSize();
+const CommonLayout: FC<CommonLayoutProps> = (
+  { index = "01", children },
+  className
+) => {
+  
+ 
   return (
     <div
-      className={`nc-PageAddListing1 ${windowSize.width > 1400 ? "w-1/2" : "w-full"}  justify-items: center px-8 pb-10 pt-10 sm:py-10 lg:pb-10`}
+      className={`nc-PageAddListing1 ${className} justify-items: center px-9 `}
       data-nc-id="PageAddListing1"
       style={{minWidth:'40%'}}
     >
       <div className="space-y-6">
-        <div>
+        <div> 
           <span className="text-4xl font-semibold">{index}</span>{" "}
         </div>
 
