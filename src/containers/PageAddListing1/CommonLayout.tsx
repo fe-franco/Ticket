@@ -17,7 +17,7 @@ const CommonLayout: FC<CommonLayoutProps> = (
  
   return (
     <div
-      className={`nc-PageAddListing1 ${className} justify-items: center px-9 `}
+      className={`nc-PageAddListing1 w-full ${className} justify-items: center `}
       data-nc-id="PageAddListing1"
       style={{minWidth:'40%'}}
     >

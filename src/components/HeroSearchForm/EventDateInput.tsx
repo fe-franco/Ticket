@@ -13,6 +13,7 @@ export interface EventDateInputProps {
   label?:string
   defaultValue: moment.Moment | null;
   defaultTimeValue: TimeRage;
+  sub: string
   onChange?: (date: { startDate: moment.Moment | null ; stateTimeRage: TimeRage}) => void;
   defaultFocus?: boolean;
   fieldClassName?: string;
@@ -33,6 +34,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
   anchorDirection,
   className = "",
   fieldClassName = "[ nc-hero-field-padding ]",
+  sub
 }) => {
   const [focusedInput, setFocusedInput] = useState(defaultFocus);
   const [startDate, setStartDate] = useState(defaultValue);
@@ -194,11 +196,11 @@ const EventDateInput: FC<EventDateInputProps> = ({
     );
   };
 
-  const renderInputCheckInDate = () => {
+  const renderInputCheckInDate = ( sub : string ) => {
     const focused = focusedInput;
     return (
       <div
-        className={`flex w-full relative ${fieldClassName} items-center space-x-3 cursor-pointer ${
+        className={`flex w-full ${fieldClassName}  items-center space-x-3 cursor-pointer ${
           focused ? "shadow-2xl rounded-full dark:bg-neutral-800" : ""
         }`}
         onClick={() => handleDateFocusChange({ focused: true })}
@@ -220,12 +222,12 @@ const EventDateInput: FC<EventDateInputProps> = ({
           </svg>
         </div>
         <div className="flex-grow">
-          <span className="block xl:text-lg font-semibold flex">
+          <span className=" xl:text-lg font-semibold flex">
             {startDate ? startDate.format("DD MMM") : "Dia"}
             {renderEditTime("pickUp")}
           </span>
           <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-            {startDate ? "Data" : `Add data`}
+            {sub}
           </span>
           {startDate && focused && (
             <ClearDataButton onClick={() => handleClearData()} />
@@ -236,8 +238,8 @@ const EventDateInput: FC<EventDateInputProps> = ({
   };
 
   return (
-    <div className={`relative flex ${className}`} style={{ flex: "1 0 0%" }}>
-      <div className="absolute inset-x-0 bottom-0">
+    <div className={`flex ${className}`} style={{ flex: "1 0 0%" }}>
+      <div className="absolute inset-x-1 bottom-0">
         <SingleDatePicker
           date={startDate}
           onDateChange={(date) => setStartDate(date)}
@@ -253,7 +255,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
         />
       </div>
 
-      {renderInputCheckInDate()}
+      {renderInputCheckInDate(sub)}
     </div>
   );
 };

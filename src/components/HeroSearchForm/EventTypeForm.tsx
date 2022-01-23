@@ -8,6 +8,7 @@ import "react-dates/initialize";
 import Input from "shared/Input/Input";
 import EventDateInput from "./EventDateInput";
 import EventLocationForm from "./EventLocationForm";
+import LocationInput from "./LocationInput";
 import RealEstateSearchForm from "./RealEstateSearchForm";
 import { TimeRage } from "./RentalCarSearchForm";
 
@@ -113,13 +114,14 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
             
       case "Live":
         return (
-          <div className="space-x-10 flex items-end">
+          <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start">
             {/* ITEM */}
-                <FormItem  className="w-1/2" label="Link da Live">
+                <FormItem  className="w-full lg:w-1/2" label="Link da Live">
                   <Input />
                 </FormItem>
-                <FormItem className="w-1/2" label="Data da Live">
+                <FormItem className="w-full lg:w-1/2" label="Data da Live">
                   <EventDateInput
+                    sub="Data"
                     className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
                     label="Data do evento"
                     defaultValue={selectedDay}
@@ -139,13 +141,14 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
         );
       case "Videoconferência":
         return (
-          <div className="space-x-10 flex items-end">
+          <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start lgitems-end">
             {/* ITEM */}
-                <FormItem  className="w-1/2" label="Link da conferência">
+                <FormItem  className="w-full lg:w-1/2" label="Link da conferência">
                   <Input />
                 </FormItem>
-                <FormItem className="w-1/2" label="Data da conferência">
+                <FormItem className="w-full lg:w-1/2" label="Data da conferência">
                   <EventDateInput
+                    sub="Data"
                     className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
                     label="Data do evento"
                     defaultValue={selectedDay}

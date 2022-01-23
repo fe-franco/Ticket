@@ -53,6 +53,7 @@ const EventLocationForm: FC<EventLocationFormProps> = ({
           onInputDone={() => setDateFocused(true)}
         />
         <EventDateInput
+            sub="Data"
             className="h-20"
             label="Data do evento"
             defaultValue={selectedDay}

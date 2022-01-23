@@ -8,17 +8,19 @@ import Textarea from "shared/Textarea/Textarea";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import EventTypeForm from "components/HeroSearchForm/EventTypeForm";
 import TicketForm from "components/HeroSearchForm/TicketForm";
+import useWindowSize from "hooks/useWindowResize";
 
 export interface PageAddListing1Props {}
 
 const PageAddListing1: FC<PageAddListing1Props> = () => {
+  const windowSize = useWindowSize();
    
 
   
   return (
     <div>
-      <div className="mt-6 grid grid-cols-2 gap-12 px-10 items-start">
-        <CommonLayout  index="1. Informações do evento">
+      <div className={`mt-6 grid grid-cols-1 lg:grid-cols-2 gap-12 ${window.innerWidth>600?"px-10":"px-5"} items-center`}>
+        <CommonLayout className="px-9"  index="1. Informações do evento">
           <>
             <h2 className="text-2xl font-semibold">Sobre seu evento📣</h2>
             {/* FORM */}
@@ -117,15 +119,15 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
               </div>
               <div>
               <span className="text-lg mt-2 font-semibold">Descrição</span>
-              <Textarea className="mt-2" placeholder="..." rows={13} />
+              <Textarea className="mt-2" placeholder="..." rows={windowSize.width > 1400 ? 13 : 6} />
               </div>
             </div>
           </>
         </CommonLayout>
-        <CommonLayout  index="2. Local do Evento">
+        <CommonLayout className="px-9" index="2. Local do Evento">
         <EventTypeForm className="w-full"/>
         </CommonLayout>
-        <div className="col-span-2 flex w-full justify-center">
+        <div className={`" ${windowSize.width > 1400 ? "col-span-2" : "col-span-1"} flex w-full justify-center"`}>
               <TicketForm/>
         </div>
       </div>
