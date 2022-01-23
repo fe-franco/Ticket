@@ -1,0 +1,49 @@
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var {{name}}Schema = new Schema(
+  {
+    title: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+
+    descripcion: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+
+    thumbnail: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+   {{#if wantSoftDelete}}
+   isActive: { 
+        type: Boolean,
+     default:true
+        },
+{{/if}}
+  },
+     {{#if wantTimeStamp}}
+
+  { timestamps: true }
+  {{/if}}
+);
+
+{{name}}Schema.method({
+  transform() {
+    const transformed = {};
+    const fields = [
+
+    ];
+
+    fields.forEach((field) => {
+      transformed[field] = this[field];
+    });
+
+    return transformed;
+  },
+});
+module.exports = mongoose.model("{{name}}", {{name}}Schema);

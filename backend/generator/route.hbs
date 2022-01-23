@@ -1,0 +1,18 @@
+'use strict'
+const express = require('express')
+const router = express.Router()
+const auth = require('../../middlewares/authorization')
+const {{name}} = require('../../controllers/{{file_name}}.controller')
+
+router.delete('/:id', auth( ),{{name}}.delete{{name}}Controller)
+router.post('/', auth( ),{{name}}.add{{name}}Controller)
+{{#if wantSoftDelete}}
+router.get('/bo', auth( ), {{name}}.get{{name}}ControllerBO)
+router.get('/', {{name}}.get{{name}}Controller)
+router.put('/activate/:id', auth( ),{{name}}.activate{{name}}Controller)
+router.put('/edit/:id', auth( ),{{name}}.edit{{name}}Controller)
+{{else}}
+router.get('/', {{name}}.get{{name}}Controller)
+router.put('/:id', auth( ),{{name}}.edit{{name}}Controller)
+{{/if}}
+module.exports = router

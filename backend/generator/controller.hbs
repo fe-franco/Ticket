@@ -1,0 +1,113 @@
+"use strict";
+
+var fs = require("fs");
+
+const httpStatus = require("http-status");
+
+const {{name}}Model = require("../models/{{file_name}}.model");
+const { Add{{name}}, Get{{name}}, Edit{{name}}, Delete{{name}} } = require("../services/{{file_name}}");
+
+{{#if wantImageLoader}}
+exports.add{{name}}Controller = async (req, res, next) => {
+  try {
+    const {{name}} = req.body.{{name}};
+    const image = req.body.image;
+    var saved{{name}} = await Add{{name}}({{name}}, image);
+    res.status(httpStatus.CREATED);
+    res.send(saved{{name}}.transform());
+  } catch (error) {
+    return next(error);
+  }
+};
+
+{{else}}
+exports.add{{name}}Controller = async (req, res, next) => {
+  try {
+    const {{name}} = req.body.{{name}};
+    var saved{{name}} = await Add{{name}}({{name}});
+    res.status(httpStatus.CREATED);
+    res.send(saved{{name}}.transform());
+  } catch (error) {
+    return next(error);
+  }
+};
+{{/if}}
+
+
+{{#if wantSoftDelete}}
+exports.get{{name}}ControllerBO = async (req, res, next) => {
+  try {
+    const {{name}} = await Get{{name}}();
+    
+    return res.json({ data:  {{name}} });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.get{{name}}Controller = async (req, res, next) => {
+  try {
+    const {{name}} = await Get{{name}}({isActive:true});
+    
+    return res.json({ data:  {{name}} });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+exports.activate{{name}}Controller = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    
+
+    var {{name}} = await Edit{{name}}(id,{isActive:true});
+    res.status(httpStatus.CREATED);
+    return res.json({ data: {{name}} });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+{{else}}
+
+
+exports.get{{name}}Controller = async (req, res, next) => {
+  try {
+    const {{name}} = await Get{{name}}();
+    
+    return res.json({ data:  {{name}} });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
+
+{{/if}}
+
+exports.delete{{name}}Controller = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Delete{{name}}(id);
+    res.json({ result: "ok" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+exports.edit{{name}}Controller = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    
+
+    var {{name}} = await Edit{{name}}(id,req.body.{{name}},req.body.image);
+    res.status(httpStatus.CREATED);
+    return res.json({ data: {{name}} });
+  } catch (error) {
+    return next(error);
+  }
+};
+

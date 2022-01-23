@@ -1,0 +1,88 @@
+var fs = require("fs");
+{{#if wantImageLoader}}
+const decodeBase64Image = require("../utils/genericFunctions");
+{{/if}}
+const uuidv4 = require("uuid/v4");
+const {{name}}Model = require("../models/{{file_name}}.model");
+const { startOfDay, endOfDay } = require("date-fns");
+
+exports.Get{{name}} = async function (query, page, limit) {
+  try {
+    var {{name}} = await {{name}}Model.find(query);
+    return {{name}};
+  } catch (e) {
+    // Log Errors
+    throw Error("Error while fetching {{name}}");
+  }
+};
+
+exports.Add{{name}} = async function ({{name}}Obj, image=null) {
+  try {
+    {{#if wantImageLoader}}
+    const {{name}} = new {{name}}Model({{name}}Obj);
+    if(image){
+    var imageBuffer = await decodeBase64Image(image.base64);
+
+    const title =
+      {{name}}.title.replace(/[^A-Z0-9]+/gi, "_") + "_" + uuidv4() + ".jpg";
+    fs.writeFile("./img/" + title, imageBuffer.data, function (done) {
+      console.warn(done, "DONE");
+    });
+    {{name}}.thumbnail = title;
+  }
+    const saved{{name}} = await {{name}}.save();
+    return saved{{name}};
+
+    {{else}}
+    const {{name}} = new {{name}}Model({{name}}Obj);
+    const saved{{name}} = await {{name}}.save();
+    return saved{{name}};
+    {{/if}}
+  } catch (e) {
+    throw Error(e);
+  }
+};
+
+ {{#if wantSoftDelete}}
+exports.Delete{{name}} = async function (id, {{name}}Obj) {
+  try {
+    var {{name}} = await {{name}}Model.findByIdAndUpdate(id,{isActive:false});
+    return {{name}}
+  } catch (e) {
+    // Log Errors
+    throw Error("Error while deleting {{name}}");
+  }
+};
+{{else}}
+exports.Delete{{name}} = async function (id, {{name}}Obj) {
+  try {
+    var {{name}} = await {{name}}Model.findByIdAndDelete(id);
+    return {{name}}
+  } catch (e) {
+    // Log Errors
+    throw Error("Error while deleting {{name}}");
+  }
+};
+{{/if}}
+
+exports.Edit{{name}} = async function (id, {{name}}Obj, image = null) {
+  try {
+     if (image) {
+ var {{name}}_TITLE = {{name}}Obj.title?{{name}}Obj.title:""
+      
+      var imageBuffer = await decodeBase64Image(image.base64);
+      const title =
+      {{name}}_TITLE.replace(/[^A-Z0-9]+/gi, "_") + "_" + uuidv4() + ".jpg";
+      fs.writeFile("./img/" + title, imageBuffer.data, function (done) {
+        console.warn(done, "DONE");
+      });
+      {{name}}Obj.thumbnail = title;
+        }
+    var {{name}} = await {{name}}Model.findByIdAndUpdate(id,{{name}}Obj);
+    return {{name}}
+    
+  } catch (e) {
+    // Log Errors
+    throw Error("Error while editing {{name}}");
+  }
+};
