@@ -17,13 +17,9 @@ import EventDateInput from "./EventDateInput";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
 
-export interface TicketFormProps {
-  a?: string
-}
+export interface TicketFormProps {}
 
-const TicketForm: FC<TicketFormProps> = ({
-  a,
-}) => {
+const TicketForm: FC<TicketFormProps> = () => {
 
   const [TicketdateRangeValue, TicketsetDateRangeValue] = useState<DateRage>({
     startDate: moment(),
@@ -237,7 +233,7 @@ const TicketForm: FC<TicketFormProps> = ({
       <div className={`grid  ${windowSize.width > 1400 ? "grid-cols-2 gap-5" : "grid-cols-1"}   justify-center items-start`}>
           {components.map((item, i) => (
             <div className="relative flex-shrink-0 items-center">
-              <div className="absolute inset-y-1 right-3 lg:top-10">
+              <div className={`absolute inset-y-1 right-3 lg:top-10 ${components.length > 1 ? "" : "hidden"}`}>
                 <ButtonSecondary className="w-1 h-1" onClick={() => {removeItem(components, item)}}>
                   x
                 </ButtonSecondary>
