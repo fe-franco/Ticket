@@ -74,7 +74,7 @@ const ListingExperiencesPage: FC<ListingExperiencesPageProps> = ({
       data-nc-id="ListingExperiencesPage"
     >
       <Helmet>
-        <title>Chisfis || Booking React Template</title>
+        <title>Chisfis || Eventos</title>
       </Helmet>
       <BgGlassmorphism />
 
@@ -86,7 +86,7 @@ const ListingExperiencesPage: FC<ListingExperiencesPageProps> = ({
           listingType={
             <>
               <i className="text-2xl las la-umbrella-beach"></i>
-              <span className="ml-2.5">1599 experiences</span>
+              <span className="ml-2.5">1599 eventos</span>
             </>
           }
           className="pt-10 pb-24 lg:pb-32 lg:pt-24 "

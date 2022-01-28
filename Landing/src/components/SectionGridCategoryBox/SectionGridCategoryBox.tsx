@@ -15,74 +15,74 @@ const DEMO_CATS: TaxonomyType[] = [
   {
     id: "1",
     href: "#",
-    name: "New Yourk",
+    name: "São Paulo",
     taxonomy: "category",
     count: 1882,
     thumbnail:
-      "https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://images.unsplash.com/photo-1578002573559-689b0abc4148?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
   },
   {
     id: "2",
     href: "#",
-    name: "Singapore",
+    name: "Rio de Janeiro",
     taxonomy: "category",
     count: 8288,
     thumbnail:
-      "https://images.pexels.com/photos/7740160/pexels-photo-7740160.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: "2",
     href: "#",
-    name: "Paris",
+    name: "Belo Horizonte",
     taxonomy: "category",
     count: 1288,
     thumbnail:
-      "https://images.pexels.com/photos/739407/pexels-photo-739407.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "https://images.unsplash.com/photo-1566830790860-f9cad9d4cfbd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1601&q=80",
   },
   {
     id: "2",
     href: "#",
-    name: "London",
+    name: "Brasília",
     taxonomy: "category",
     count: 112,
     thumbnail:
-      "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://images.unsplash.com/photo-1625426242627-d9216dd3d698?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
   },
   {
     id: "2",
     href: "#",
-    name: "Tokyo",
+    name: "Curitiba",
     taxonomy: "category",
     count: 323,
     thumbnail:
-      "https://images.pexels.com/photos/4151484/pexels-photo-4151484.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://images.unsplash.com/photo-1581458414947-efccb03d71fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: "2",
     href: "#",
-    name: "Maldives",
+    name: "Praia Grande",
     taxonomy: "category",
     count: 2223,
     thumbnail:
-      "https://images.pexels.com/photos/3250613/pexels-photo-3250613.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "https://images.unsplash.com/photo-1591549590250-10ab146d80d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
   {
     id: "11",
     href: "#",
-    name: "New Yourk",
+    name: "Aracaju",
     taxonomy: "category",
     count: 1775,
     thumbnail:
-      "https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://images.unsplash.com/photo-1623068481023-7059d8acdb22?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80",
   },
   {
     id: "222",
     href: "#",
-    name: "Singapore",
+    name: "Florianópolis",
     taxonomy: "category",
     count: 1288,
     thumbnail:
-      "https://images.pexels.com/photos/7740160/pexels-photo-7740160.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "https://images.unsplash.com/photo-1590093804707-018ca1d521dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
   },
 ];
 
@@ -106,10 +106,10 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
   return (
     <div className={`nc-SectionGridCategoryBox relative ${className}`}>
       <Heading
-        desc="Discover great places near where you live"
+        desc="Descubra os points perto de você"
         isCenter={headingCenter}
       >
-        Explore nearby
+        Explore por perto
       </Heading>
       <div className={`grid ${gridClassName} gap-5 sm:gap-6 md:gap-8`}>
         {categories.map((item, i) => (

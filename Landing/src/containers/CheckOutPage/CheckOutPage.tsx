@@ -125,6 +125,19 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
                 <Tab as={Fragment}>
                   {({ selected }) => (
                     <button
+                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-full focus:outline-none ${
+                        selected
+                          ? "bg-neutral-800 text-white"
+                          : "text-neutral-6000 dark:text-neutral-400"
+                      }`}
+                    >
+                      Pix
+                    </button>
+                  )}
+                </Tab>
+                <Tab as={Fragment}>
+                  {({ selected }) => (
+                    <button
                       className={`px-4 py-1.5 sm:px-6 sm:py-2.5  rounded-full flex items-center justify-center focus:outline-none  ${
                         selected
                           ? "bg-neutral-800 text-white"
@@ -143,22 +156,12 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
               <Tab.Panels>
                 <Tab.Panel className="space-y-5">
                   <div className="space-y-1">
-                    <Label>Card number </Label>
-                    <Input defaultValue="111 112 222 999" />
+                    <Label>Email </Label>
+                    <Input type="email" defaultValue="example@gmail.com" />
                   </div>
                   <div className="space-y-1">
-                    <Label>Card holder </Label>
-                    <Input defaultValue="JOHN DOE" />
-                  </div>
-                  <div className="flex space-x-5  ">
-                    <div className="flex-1 space-y-1">
-                      <Label>Expiration date </Label>
-                      <Input type="date" defaultValue="MM/YY" />
-                    </div>
-                    <div className="flex-1 space-y-1">
-                      <Label>CVC </Label>
-                      <Input />
-                    </div>
+                    <Label>Password </Label>
+                    <Input type="password" defaultValue="***" />
                   </div>
                   <div className="space-y-1">
                     <Label>Messager for author </Label>
@@ -179,6 +182,40 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
                   <div className="space-y-1">
                     <Label>Password </Label>
                     <Input type="password" defaultValue="***" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>Messager for author </Label>
+                    <Textarea placeholder="..." />
+                    <span className="text-sm text-neutral-500 block">
+                      Write a few sentences about yourself.
+                    </span>
+                  </div>
+                  <div className="pt-4">
+                    <ButtonPrimary>Confirm and pay</ButtonPrimary>
+                  </div>
+                </Tab.Panel>
+                <Tab.Panel className="space-y-5">
+                  <div className="space-y-1">
+                    <Label>Email </Label>
+                    <Input type="email" defaultValue="example@gmail.com" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>Card number </Label>
+                    <Input defaultValue="111 112 222 999" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label>Card holder </Label>
+                    <Input defaultValue="JOHN DOE" />
+                  </div>
+                  <div className="flex space-x-5  ">
+                    <div className="flex-1 space-y-1">
+                      <Label>Expiration date </Label>
+                      <Input type="date" defaultValue="MM/YY" />
+                    </div>
+                    <div className="flex-1 space-y-1">
+                      <Label>CVC </Label>
+                      <Input />
+                    </div>
                   </div>
                   <div className="space-y-1">
                     <Label>Messager for author </Label>

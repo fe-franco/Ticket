@@ -1,5 +1,5 @@
 import Heading from "components/Heading/Heading";
-import React, { FC } from "react";
+import { FC } from "react";
 import NcImage from "shared/NcImage/NcImage";
 import HIW1img from "images/HIW1.png";
 import HIW2img from "images/HIW2.png";
@@ -21,20 +21,20 @@ const DEMO_DATA: SectionHowItWorkProps["data"] = [
   {
     id: 1,
     img: HIW1img,
-    title: "Book & relax",
-    desc: "Let each trip be an inspirational journey, each room a peaceful space",
+    title: "Crie sua conta",
+    desc: "Cadastre sua conta de produtor e já começe a publicar.",
   },
   {
     id: 2,
     img: HIW2img,
-    title: "Smart checklist",
-    desc: "Let each trip be an inspirational journey, each room a peaceful space",
+    title: "Publique seu evento",
+    desc: "Escolha um nome, Local, crie seus ingressos.",
   },
   {
     id: 3,
     img: HIW3img,
-    title: "Save more",
-    desc: "Let each trip be an inspirational journey, each room a peaceful space",
+    title: "Divulgue seu evento",
+    desc: "Compartilhe seu link personalizado em todas suas redes!",
   },
 ];
 
@@ -47,8 +47,8 @@ const SectionHowItWork: FC<SectionHowItWorkProps> = ({
       className={`nc-SectionHowItWork  ${className}`}
       data-nc-id="SectionHowItWork"
     >
-      <Heading isCenter desc="Keep calm & travel on">
-        How it work
+      <Heading isCenter desc="3 Etapas para se tornar um produtor">
+        Como funciona
       </Heading>
       <div className="mt-20 relative grid md:grid-cols-3 gap-20">
         <img

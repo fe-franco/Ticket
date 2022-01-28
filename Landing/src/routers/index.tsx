@@ -85,7 +85,7 @@ export const pages: Page[] = [
   { path: "/blog", component: BlogPage },
   { path: "/blog-single", component: BlogSingle },
   //
-  { path: "/add-listing-1", component: PageAddListing1 },
+  { path: "/criar-evento", component: PageAddListing1 },
   { path: "/add-listing-2", component: PageAddListing2 },
   { path: "/add-listing-3", component: PageAddListing3 },
   { path: "/add-listing-4", component: PageAddListing4 },

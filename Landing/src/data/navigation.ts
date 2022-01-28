@@ -115,13 +115,13 @@ const otherPageChildMenus: NavItemType[] = [
 const templatesChildrenMenus: NavItemType[] = [
   {
     id: ncNanoId(),
-    href: "/add-listing-1",
+    href: "/criar-evento",
     name: "Add Listings",
     type: "dropdown",
     children: [
       {
         id: ncNanoId(),
-        href: "/add-listing-1",
+        href: "/criar-evento",
         name: "Add Listings 1",
       },
       {

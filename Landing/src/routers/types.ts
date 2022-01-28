@@ -32,7 +32,7 @@ export interface LocationStates {
   "/blog"?: {};
   "/blog-single"?: {};
   //
-  "/add-listing-1"?: {};
+  "/criar-evento"?: {};
   "/add-listing-2"?: {};
   "/add-listing-3"?: {};
   "/add-listing-4"?: {};

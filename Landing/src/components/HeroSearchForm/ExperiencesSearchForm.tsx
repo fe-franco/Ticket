@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import LocationInput from "./LocationInput";
-import Ticket, { TicketProps } from "./Ticket";
 import ExperiencesDateSingleInput from "./ExperiencesDateSingleInput";
 import ButtonSubmit from "./ButtonSubmit";
 import moment from "moment";
@@ -9,11 +8,7 @@ import { FC } from "react";
 // DEFAULT DATA FOR ARCHIVE PAGE
 const defaultLocationValue = "Tokyo, Jappan";
 const defaultDate = moment();
-const defaultGuestValue: TicketProps["defaultValue"] = {
-  guestAdults: 2,
-  guestChildren: 2,
-  guestInfants: 1,
-};
+
 
 export interface ExperiencesSearchFormProps {
   haveDefaultValue?: boolean;
@@ -24,7 +19,6 @@ const ExperiencesSearchForm: FC<ExperiencesSearchFormProps> = ({
 }) => {
   const [dateValue, setdateValue] = useState<moment.Moment | null>(null);
   const [locationInputValue, setLocationInputValue] = useState("");
-  const [guestValue, setGuestValue] = useState({});
 
   const [dateFocused, setDateFocused] = useState<boolean>(false);
   //
@@ -33,7 +27,6 @@ const ExperiencesSearchForm: FC<ExperiencesSearchFormProps> = ({
     if (haveDefaultValue) {
       setdateValue(defaultDate);
       setLocationInputValue(defaultLocationValue);
-      setGuestValue(defaultGuestValue);
     }
   }, []);
 
@@ -55,11 +48,6 @@ const ExperiencesSearchForm: FC<ExperiencesSearchFormProps> = ({
           onFocusChange={(focus: boolean) => {
             setDateFocused(focus);
           }}
-        />
-
-        <Ticket
-          defaultValue={guestValue}
-          onChange={(data) => setGuestValue(data)}
         />
         {/* BUTTON SUBMIT OF FORM */}
         <div className="px-4 py-4 lg:py-0">

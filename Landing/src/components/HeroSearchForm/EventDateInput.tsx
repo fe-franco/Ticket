@@ -54,7 +54,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
     if (onChange) {
       onChange({startDate, stateTimeRage});
     }
-  }, [startDate]);
+  }, [startDate, stateTimeRage]);
 
 
   const handleDateFocusChange = (arg: { focused: boolean }) => {
@@ -242,7 +242,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
       <div className="absolute inset-x-1 bottom-0">
         <SingleDatePicker
           date={startDate}
-          onDateChange={(date) => setStartDate(date)}
+          onDateChange={(date) => {setStartDate(date)}}
           id={"nc-hero-EventDateInput-startDateId"}
           focused={focusedInput}
           daySize={windowSize.width > 425 ? 56 : undefined}

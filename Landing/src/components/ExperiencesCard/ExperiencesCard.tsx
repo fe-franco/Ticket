@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import BtnLikeIcon from "components/BtnLikeIcon/BtnLikeIcon";
 import SaleOffBadge from "components/SaleOffBadge/SaleOffBadge";
 import Badge from "shared/Badge/Badge";
+import NcImage from "shared/NcImage/NcImage";
 
 export interface ExperiencesCardProps {
   className?: string;
@@ -30,7 +31,9 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
     href,
     like,
     saleOff,
+    featuredImage,
     isAds,
+    date,
     price,
     reviewStart,
     reviewCount,
@@ -40,11 +43,10 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
   const renderSliderGallery = () => {
     return (
       <div className="relative w-full rounded-2xl overflow-hidden">
-        <GallerySlider
-          uniqueID={`ExperiencesCard-${id}`}
-          ratioClass={ratioClass}
-          galleryImgs={galleryImgs}
-        />
+       
+       <div className={ratioClass}>
+          <NcImage src={featuredImage} />
+        </div>
         <BtnLikeIcon isLiked={like} className="absolute right-3 top-3" />
         {saleOff && <SaleOffBadge className="absolute left-3 top-3" />}
       </div>
@@ -53,10 +55,25 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
 
   const renderContent = () => {
     return (
-      <div className={size === "default" ? "py-4 space-y-4" : "py-3 space-y-2"}>
+      <div className={`ml-2 ${size === "default" ? "py-4 space-y-4" : "py-3 space-y-2"}`}>
         <div className="space-y-2">
-          <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm space-x-2">
-            {size === "default" && (
+          <div className="flex items-center space-x-2">
+            <h2
+              className={` font-medium capitalize ${
+                size === "default" ? "text-base" : "text-base"
+              }`} 
+            >
+              <span className="line-clamp-1">{title}</span>
+            </h2>
+          </div>
+            <div className="w-14 border-b border-neutral-100 dark:border-neutral-800"></div>
+          <div className="flex flex-col text-neutral-500 dark:text-neutral-400 text-sm">
+            <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm space-x-2">
+              <i className="las la-clock text-lg"></i>
+              <span>{date}</span>
+            </div>
+            <div className="flex items-center text-neutral-500 dark:text-neutral-400 text-sm space-x-2" >
+              {size === "default" && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-4 w-4"
@@ -77,33 +94,12 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-            )}
-            <span className="">{address}</span>
+              )}
+              <span className="">{address}</span>
+            </div>
+            
           </div>
-
-          <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
-            <h2
-              className={` font-medium capitalize ${
-                size === "default" ? "text-base" : "text-base"
-              }`}
-            >
-              <span className="line-clamp-1">{title}</span>
-            </h2>
-          </div>
-        </div>
-        <div className="border-b border-neutral-100 dark:border-neutral-800"></div>
-        <div className="flex justify-between items-center">
-          <span className="text-base font-semibold">
-            {price}
-            {` `}
-            {size === "default" && (
-              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">
-                /person
-              </span>
-            )}
-          </span>
-          <StartRating reviewCount={reviewCount} point={reviewStart} />
+          
         </div>
       </div>
     );
@@ -111,7 +107,7 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
 
   return (
     <div
-      className={`nc-ExperiencesCard group relative ${className}`}
+      className={`nc-ExperiencesCard group relative bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow ${className}`}
       data-nc-id="ExperiencesCard"
     >
       <Link to={href}>
