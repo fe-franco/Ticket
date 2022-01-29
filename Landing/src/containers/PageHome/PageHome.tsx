@@ -142,15 +142,13 @@ function PageHome() {
         </div>
 
         {/* SECTION */}
-        <SectionGridCategoryBox />
-
+        <SectionHowItWork />
         {/* SECTION */}
         <div className="relative py-16">
           <BackgroundSection />
           <SectionBecomeAnAuthor />
         </div>
         {/* SECTION */}
-        <SectionHowItWork />
       </div>
     </div>
   );
