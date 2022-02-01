@@ -1,6 +1,5 @@
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
-import SectionHeroArchivePage from "components/SectionHeroArchivePage/SectionHeroArchivePage";
 import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
 import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
 import { TaxonomyType } from "data/types";
@@ -77,39 +76,8 @@ const ListingExperiencesPage: FC<ListingExperiencesPageProps> = ({
         <title>Chisfis || Eventos</title>
       </Helmet>
       <BgGlassmorphism />
-
-      <div className="container relative">
-        {/* SECTION HERO */}
-        <SectionHeroArchivePage
-          currentPage="Experiences"
-          currentTab="Experiences"
-          listingType={
-            <>
-              <i className="text-2xl las la-umbrella-beach"></i>
-              <span className="ml-2.5">1599 eventos</span>
-            </>
-          }
-          className="pt-10 pb-24 lg:pb-32 lg:pt-24 "
-        />
-
-        {/* SECTION */}
-        <SectionGridFilterCard className="pb-24 lg:pb-32" />
-
-        {/* SECTION 1 */}
-        <div className="relative py-16">
-          <BackgroundSection />
-          <SectionSliderNewCategories
-            heading="Explore top destination ✈"
-            subHeading="Explore thousands of destinations around the world"
-            categoryCardType="card4"
-            itemPerRow={4}
-            categories={DEMO_CATS}
-            sliderStyle="style2"
-          />
-        </div>
-
-        {/* SECTION */}
-        <SectionSubscribe2 className="py-24 lg:py-32" />
+      <div className="container relative space-y-24 pt-10 lg:pt-20 pb-16 mb-24 lg:space-y-32 lg:mb-32">
+        <SectionGridFilterCard eventPage={true} className="pb-20" />
       </div>
     </div>
   );

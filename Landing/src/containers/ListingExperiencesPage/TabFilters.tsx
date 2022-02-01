@@ -394,7 +394,7 @@ const TabFilters = () => {
                   <div className="relative flex-shrink-0 px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 text-center">
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="text-lg font-medium leading-6 text-gray-900 dark:text-neutral-300"
                     >
                       Experiences filters
                     </Dialog.Title>

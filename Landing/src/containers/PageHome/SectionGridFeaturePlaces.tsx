@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
-import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "data/listings";
-import { ExperiencesDataType, StayDataType } from "data/types";
+import { DEMO_EVENTS_LISTINGS, DEMO_STAY_LISTINGS } from "data/listings";
+import { EventDataType, StayDataType } from "data/types";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import HeaderFilter from "./HeaderFilter";
 import StayCard from "components/StayCard/StayCard";
@@ -9,13 +9,11 @@ import Heading from "components/Heading/Heading";
 import ButtonSecondary from "shared/Button/ButtonSecondary";
 
 // OTHER DEMO WILL PASS PROPS
-const DEMO_DATA: ExperiencesDataType[] = DEMO_EXPERIENCES_LISTINGS.filter(
-  (_, i) => i < 8
-);
+const DEMO_DATA: EventDataType[] = DEMO_EVENTS_LISTINGS.filter((_, i) => i < 8);
 
 //
 export interface SectionGridFeaturePlacesProps {
-  stayListings?: ExperiencesDataType[];
+  stayListings?: EventDataType[];
   gridClass?: string;
   heading?: ReactNode;
   subHeading?: ReactNode;
@@ -29,7 +27,7 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
   heading = "Recomendados para você",
   subHeading = "Da uma olhada no que a gente achou",
 }) => {
-  const renderCard = (stay: ExperiencesDataType) => {
+  const renderCard = (stay: EventDataType) => {
     return <ExperiencesCard key={stay.id} data={stay} />;
   };
 
@@ -50,7 +48,7 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
         {DEMO_DATA.map((stay) => renderCard(stay))}
       </div>
       <div className="flex mt-16 justify-center items-center">
-        <ButtonPrimary loading>Show me more</ButtonPrimary>
+        <ButtonPrimary loading>Mostrar mais</ButtonPrimary>
       </div>
     </div>
   );

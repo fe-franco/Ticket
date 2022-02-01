@@ -122,7 +122,6 @@ const DEMO_CATS_2: TaxonomyType[] = [
 ];
 
 function PageHome() {
-
   return (
     <div className="nc-PageHome relative overflow-hidden">
       <Helmet>

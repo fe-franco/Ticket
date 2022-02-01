@@ -87,7 +87,7 @@ export interface StayDataType {
 }
 
 //
-export interface ExperiencesDataType {
+export interface EventDataType {
   id: string | number;
   author: AuthorType;
   date: string;

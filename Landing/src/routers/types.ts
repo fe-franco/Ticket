@@ -9,9 +9,9 @@ export interface LocationStates {
   "/listing-stay-map"?: {};
   "/listing-stay-detail"?: {};
   //
-  "/listing-experiences"?: {};
-  "/listing-experiences-map"?: {};
-  "/listing-experiences-detail"?: {};
+  "/listing-events"?: {};
+  "/listing-events-map"?: {};
+  "/listing-events-detail"?: {};
   //
   "/listing-real-estate"?: {};
   "/listing-real-estate-map"?: {};
