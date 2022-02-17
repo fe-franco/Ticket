@@ -17,11 +17,10 @@ export type EventTypeTab = "Presencial" | "Live" | "Videoconferência";
 export interface EventTypeFormProps {
   className?: string;
   currentTab?: EventTypeTab;
-  
 }
 
-const currentTab=""
-const currentPage=""
+const currentTab = "";
+const currentPage = "";
 const isArchivePage = !!currentPage && !!currentTab;
 
 const EventTypeForm: FC<EventTypeFormProps> = ({
@@ -32,14 +31,13 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
   const [tabActive, setTabActive] = useState<EventTypeTab>(currentTab);
   const [selectedDay, setSelectedDay] = useState<moment.Moment | null>(
     moment().add(2, "days")
-    );
+  );
   const [timeRangeValue, setTimeRangeValue] = useState<TimeRage>({
-    startTime: moment().hour().toString()+":00",
-    endTime: moment().hour().toString()+":00",
+    startTime: moment().hour().toString() + ":00",
+    endTime: moment().hour().toString() + ":00",
   });
 
   const windowSize = useWindowSize();
-
 
   const [dateFocused, setDateFocused] = useState<boolean>(false);
 
@@ -75,7 +73,13 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
         return (
           <div className="space-y-8">
             {/* ITEM */}
-            <div className={window.innerWidth>600?"flex items-strech space-x-10":"space-y-8"}>
+            <div
+              className={
+                window.innerWidth > 600
+                  ? "flex items-strech space-x-10"
+                  : "space-y-8"
+              }
+            >
               <FormItem className="w-full lg:w-1/2" label="Nome do Local">
                 <Input />
               </FormItem>
@@ -83,7 +87,7 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
                 <Input />
               </FormItem>
             </div>
-            <EventLocationForm className="" haveDefaultValue={isArchivePage}/>
+            <EventLocationForm className="" haveDefaultValue={isArchivePage} />
             <div>
               <span className="block text-sm text-neutral-500 dark:text-neutral-400">
                 1110 Pennsylvania Avenue NW, Washington, DC 20230
@@ -92,7 +96,6 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
                 <div className="aspect-w-7 aspect-h-5 sm:aspect-h-3">
                   <div className="rounded-xl overflow-hidden">
                     <GoogleMapReact
-                  
                       bootstrapURLKeys={{
                         key: "AIzaSyDxJaU8bLdx7sSJ8fcRdhYS1pLk8Jdvnx0",
                       }}
@@ -102,7 +105,7 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
                         lat: 55.9607277,
                         lng: 36.2172614,
                       }}
-                      >
+                    >
                       <LocationMarker lat={55.9607277} lng={36.2172614} />
                     </GoogleMapReact>
                   </div>
@@ -110,60 +113,60 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
               </div>
             </div>
           </div>
-        )
-            
+        );
+
       case "Live":
         return (
           <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start">
             {/* ITEM */}
-                <FormItem  className="w-full lg:w-1/2" label="Link da Live">
-                  <Input />
-                </FormItem>
-                <FormItem className="w-full lg:w-1/2" label="Data da Live">
-                  <EventDateInput
-                    sub="Data"
-                    className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
-                    label="Data do evento"
-                    defaultValue={selectedDay}
-                    defaultTimeValue={timeRangeValue}
-                    defaultFocus={dateFocused}
-                    onFocusChange={(focus: boolean) => {
-                      setDateFocused(focus);
-                    }}
-                    onChange={(data) => {
-                      setSelectedDay(data.startDate);
-                      setTimeRangeValue(data.stateTimeRage);
-                    }}
-                    anchorDirection={windowSize.width > 1400 ? "left" : "right"}
-                  />
-                </FormItem>
+            <FormItem className="w-full lg:w-1/2" label="Link da Live">
+              <Input />
+            </FormItem>
+            <FormItem className="w-full lg:w-1/2" label="Data da Live">
+              <EventDateInput
+                sub="Data"
+                className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
+                label="Data do evento"
+                defaultValue={selectedDay}
+                defaultTimeValue={timeRangeValue}
+                defaultFocus={dateFocused}
+                onFocusChange={(focus: boolean) => {
+                  setDateFocused(focus);
+                }}
+                onChange={(data) => {
+                  setSelectedDay(data.startDate);
+                  setTimeRangeValue(data.stateTimeRage);
+                }}
+                anchorDirection={windowSize.width > 1400 ? "left" : "right"}
+              />
+            </FormItem>
           </div>
         );
       case "Videoconferência":
         return (
           <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start lgitems-end">
             {/* ITEM */}
-                <FormItem  className="w-full lg:w-1/2" label="Link da conferência">
-                  <Input />
-                </FormItem>
-                <FormItem className="w-full lg:w-1/2" label="Data da conferência">
-                  <EventDateInput
-                    sub="Data"
-                    className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
-                    label="Data do evento"
-                    defaultValue={selectedDay}
-                    defaultTimeValue={timeRangeValue}
-                    defaultFocus={dateFocused}
-                    onFocusChange={(focus: boolean) => {
-                      setDateFocused(focus);
-                    }}
-                    onChange={(data) => {
-                      setSelectedDay(data.startDate);
-                      setTimeRangeValue(data.stateTimeRage);
-                    }}
-                    anchorDirection={windowSize.width > 1400 ? "left" : "right"}
-                  />
-                </FormItem>
+            <FormItem className="w-full lg:w-1/2" label="Link da conferência">
+              <Input />
+            </FormItem>
+            <FormItem className="w-full lg:w-1/2" label="Data da conferência">
+              <EventDateInput
+                sub="Data"
+                className="rounded-2xl h-14 bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 "
+                label="Data do evento"
+                defaultValue={selectedDay}
+                defaultTimeValue={timeRangeValue}
+                defaultFocus={dateFocused}
+                onFocusChange={(focus: boolean) => {
+                  setDateFocused(focus);
+                }}
+                onChange={(data) => {
+                  setSelectedDay(data.startDate);
+                  setTimeRangeValue(data.stateTimeRage);
+                }}
+                anchorDirection={windowSize.width > 1400 ? "left" : "right"}
+              />
+            </FormItem>
           </div>
         );
 
@@ -178,7 +181,7 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
       data-nc-id="EventTypeForm"
     >
       <div className="flex flex-col">
-      <h2 className="text-2xl font-semibold">Tipo de evento🎭</h2>
+        <h2 className="text-2xl font-semibold">Tipo de evento🎭</h2>
         {renderTab()}
       </div>
       {renderForm()}

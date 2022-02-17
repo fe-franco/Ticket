@@ -299,7 +299,7 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({
       return <li className="menu-item">{renderMainItem(menuItem)}</li>;
   }
 };
-// Your component own properties
+// Your component own eventos
 
 const NavigationItemWithRouter = withRouter<
   NavigationItemWithRouterProps,

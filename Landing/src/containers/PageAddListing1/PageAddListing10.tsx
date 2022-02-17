@@ -9,10 +9,7 @@ export interface PageAddListing10Props {}
 
 const PageAddListing10: FC<PageAddListing10Props> = () => {
   return (
-    <CommonLayout
-      nextBtnText="Publish listing"
-      index="10"
-    >
+    <CommonLayout nextBtnText="Publish listing" index="10">
       <>
         <div>
           <h2 className="text-2xl font-semibold">Congratulations 🎉</h2>
@@ -32,7 +29,7 @@ const PageAddListing10: FC<PageAddListing10Props> = () => {
             />
           </div>
           <div className="flex items-center space-x-5 mt-8">
-            <ButtonSecondary href="/add-listing-1">
+            <ButtonSecondary href="/criar-evento">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

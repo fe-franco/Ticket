@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import GallerySlider from "components/GallerySlider/GallerySlider";
-import { DEMO_EXPERIENCES_LISTINGS } from "data/listings";
-import { ExperiencesDataType } from "data/types";
+import { DEMO_EVENTS_LISTINGS } from "data/listings";
+import { EventDataType } from "data/types";
 import StartRating from "components/StartRating/StartRating";
 import { Link } from "react-router-dom";
 import BtnLikeIcon from "components/BtnLikeIcon/BtnLikeIcon";
@@ -11,10 +11,10 @@ import Avatar from "shared/Avatar/Avatar";
 
 export interface ExperiencesCardHProps {
   className?: string;
-  data?: ExperiencesDataType;
+  data?: EventDataType;
 }
 
-const DEMO_DATA: ExperiencesDataType = DEMO_EXPERIENCES_LISTINGS[0];
+const DEMO_DATA: EventDataType = DEMO_EVENTS_LISTINGS[0];
 
 const ExperiencesCardH: FC<ExperiencesCardHProps> = ({
   className = "",

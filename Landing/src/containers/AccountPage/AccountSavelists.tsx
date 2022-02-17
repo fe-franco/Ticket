@@ -4,7 +4,7 @@ import ExperiencesCard from "components/ExperiencesCard/ExperiencesCard";
 import StayCard from "components/StayCard/StayCard";
 import {
   DEMO_CAR_LISTINGS,
-  DEMO_EXPERIENCES_LISTINGS,
+  DEMO_EVENTS_LISTINGS,
   DEMO_STAY_LISTINGS,
 } from "data/listings";
 import React, { Fragment, useState } from "react";
@@ -54,11 +54,9 @@ const AccountSavelists = () => {
               </Tab.Panel>
               <Tab.Panel className="mt-8">
                 <div className="grid grid-cols-1 gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {DEMO_EXPERIENCES_LISTINGS.filter((_, i) => i < 8).map(
-                    (stay) => (
-                      <ExperiencesCard key={stay.id} data={stay} />
-                    )
-                  )}
+                  {DEMO_EVENTS_LISTINGS.filter((_, i) => i < 8).map((stay) => (
+                    <ExperiencesCard key={stay.id} data={stay} />
+                  ))}
                 </div>
                 <div className="flex mt-11 justify-center items-center">
                   <ButtonSecondary>Show me more</ButtonSecondary>

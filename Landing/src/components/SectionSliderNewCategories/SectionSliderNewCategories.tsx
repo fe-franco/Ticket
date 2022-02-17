@@ -7,6 +7,9 @@ import CardCategory3 from "components/CardCategory3/CardCategory3";
 import CardCategory4 from "components/CardCategory4/CardCategory4";
 import NextPrev from "shared/NextPrev/NextPrev";
 import CardCategory5 from "components/CardCategory5/CardCategory5";
+import FormItem from "containers/PageAddListing1/FormItem";
+import ExperiencesSearchForm from "components/HeroSearchForm/ExperiencesSearchForm";
+import useWindowSize from "hooks/useWindowResize";
 
 export interface SectionSliderNewCategoriesProps {
   className?: string;
@@ -77,8 +80,8 @@ const DEMO_CATS: TaxonomyType[] = [
 ];
 
 const SectionSliderNewCategories: FC<SectionSliderNewCategoriesProps> = ({
-  heading = "Heading of sections",
-  subHeading = "Descriptions for sections",
+  heading = "Qual a boa de hoje?",
+  subHeading = "Shows, eventos, e muito mais",
   className = "",
   itemClassName = "",
   categories = DEMO_CATS,
@@ -132,16 +135,29 @@ const SectionSliderNewCategories: FC<SectionSliderNewCategoriesProps> = ({
     }
   };
 
+  const windowSize = useWindowSize();
+
   return (
     <div className={`nc-SectionSliderNewCategories ${className}`}>
       <div className={`${UNIQUE_CLASS} flow-root`}>
         <Heading
+          className={windowSize.width > 1400 ? "hidden" : ""}
+          desc={subHeading}
+        >
+          {heading}
+        </Heading>
+        <Heading
+          className={windowSize.width > 1400 ? "" : "hidden"}
           desc={subHeading}
           hasNextPrev={sliderStyle === "style1"}
           isCenter={sliderStyle === "style2"}
         >
           {heading}
         </Heading>
+
+        <div className="pb-10">
+          <ExperiencesSearchForm haveDefaultValue={false} />
+        </div>
         <div className="glide__track" data-glide-el="track">
           <ul className="glide__slides">
             {categories.map((item, index) => (

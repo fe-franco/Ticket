@@ -115,13 +115,13 @@ const otherPageChildMenus: NavItemType[] = [
 const templatesChildrenMenus: NavItemType[] = [
   {
     id: ncNanoId(),
-    href: "/add-listing-1",
+    href: "/criar-evento",
     name: "Add Listings",
     type: "dropdown",
     children: [
       {
         id: ncNanoId(),
-        href: "/add-listing-1",
+        href: "/criar-evento",
         name: "Add Listings 1",
       },
       {
@@ -206,18 +206,18 @@ export const NAVIGATION_DEMO: NavItemType[] = [
       //
       {
         id: ncNanoId(),
-        href: "/listing-experiences",
-        name: "Experiences page",
+        href: "/listing-events",
+        name: "Events page",
       },
       {
         id: ncNanoId(),
-        href: "/listing-experiences-map",
-        name: "Experiences page (map)",
+        href: "/listing-events-map",
+        name: "Events page (map)",
       },
       {
         id: ncNanoId(),
-        href: "/listing-experiences-detail",
-        name: "Experiences Detail",
+        href: "/listing-events-detail",
+        name: "Events Detail",
       },
       //
       { id: ncNanoId(), href: "/listing-car", name: "Cars page" },

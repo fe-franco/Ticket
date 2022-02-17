@@ -3,6 +3,7 @@ import { SingleDatePicker, AnchorDirectionShape } from "react-dates";
 import { FC } from "react";
 import ClearDataButton from "./ClearDataButton";
 import moment from "moment";
+import 'moment/locale/pt-br';
 import useWindowSize from "hooks/useWindowResize";
 
 export interface ExperiencesDateSingleInputProps {
@@ -79,10 +80,10 @@ const ExperiencesDateSingleInput: FC<ExperiencesDateSingleInputProps> = ({
         </div>
         <div className="flex-grow">
           <span className="block xl:text-lg font-semibold">
-            {startDate ? startDate.format("DD MMM") : "Date"}
+            {startDate ? startDate.format("DD [de] MMMM") : "Data"}
           </span>
           <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
-            {startDate ? "Date" : `Add date`}
+            {startDate ? "Dia" : `Que dia?`}
           </span>
           {startDate && focused && (
             <ClearDataButton onClick={() => handleClearData()} />

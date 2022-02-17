@@ -8,8 +8,8 @@ import Header from "shared/Header/Header";
 import Page404 from "containers/Page404/Page404";
 import ListingStayPage from "containers/ListingStayPage/ListingStayPage";
 import ListingStayMapPage from "containers/ListingStayPage/ListingStayMapPage";
-import ListingExperiencesPage from "containers/ListingExperiencesPage/ListingExperiencesPage";
-import ListingExperiencesMapPage from "containers/ListingExperiencesPage/ListingExperiencesMapPage";
+import ListingExperiencesPage from "containers/ListingExperiencesPage/ListingEventsPage";
+import ListingExperiencesMapPage from "containers/ListingExperiencesPage/ListingEventsMapPage";
 import ListingStayDetailPage from "containers/ListingDetailPage/ListingStayDetailPage";
 import ListingExperiencesDetailPage from "containers/ListingDetailPage/ListingExperiencesDetailPage";
 import ListingCarPage from "containers/ListingCarPage/ListingCarPage";
@@ -53,15 +53,15 @@ export const pages: Page[] = [
   { path: "/listing-stay-detail", component: ListingStayDetailPage },
   //
   {
-    path: "/listing-experiences",
+    path: "/listing-events",
     component: ListingExperiencesPage,
   },
   {
-    path: "/listing-experiences-map",
+    path: "/listing-events-map",
     component: ListingExperiencesMapPage,
   },
   {
-    path: "/listing-experiences-detail",
+    path: "/listing-events-detail",
     component: ListingExperiencesDetailPage,
   },
   //
@@ -85,7 +85,7 @@ export const pages: Page[] = [
   { path: "/blog", component: BlogPage },
   { path: "/blog-single", component: BlogSingle },
   //
-  { path: "/add-listing-1", component: PageAddListing1 },
+  { path: "/criar-evento", component: PageAddListing1 },
   { path: "/add-listing-2", component: PageAddListing2 },
   { path: "/add-listing-3", component: PageAddListing3 },
   { path: "/add-listing-4", component: PageAddListing4 },

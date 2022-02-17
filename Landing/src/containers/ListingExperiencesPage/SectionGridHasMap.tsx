@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import AnyReactComponent from "components/AnyReactComponent/AnyReactComponent";
 import GoogleMapReact from "google-map-react";
-import { DEMO_EXPERIENCES_LISTINGS } from "data/listings";
+import { DEMO_EVENTS_LISTINGS } from "data/listings";
 import ButtonClose from "shared/ButtonClose/ButtonClose";
 import Checkbox from "shared/Checkbox/Checkbox";
 import Pagination from "shared/Pagination/Pagination";
@@ -9,7 +9,7 @@ import TabFilters from "./TabFilters";
 import Heading2 from "components/Heading/Heading2";
 import ExperiencesCardH from "components/ExperiencesCardH/ExperiencesCardH";
 
-const DEMO_EXPERIENCES = DEMO_EXPERIENCES_LISTINGS.filter((_, i) => i < 12);
+const DEMO_EXPERIENCES = DEMO_EVENTS_LISTINGS.filter((_, i) => i < 12);
 
 export interface SectionGridHasMapProps {}
 
