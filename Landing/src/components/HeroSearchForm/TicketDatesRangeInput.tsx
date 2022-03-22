@@ -11,6 +11,7 @@ import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
 import { TimeRage } from "./RentalCarSearchForm";
 import useWindowSize from "hooks/useWindowResize";
+import moment from "moment";
 
 type Fields = "pickUp" | "dropOff";
 
@@ -61,10 +62,10 @@ const TicketDatesRangeInput: FC<TicketDatesRangeInputProps> = ({
   const handleClearData = (field: Fields) => {
     switch (field) {
       case "pickUp": {
-        return setStateDate((date) => ({ ...date, startDate: null }));
+        return setStateDate((date) => ({ ...date, startDate: moment() }));
       }
       case "dropOff": {
-        return setStateDate((date) => ({ ...date, endDate: null }));
+        return setStateDate((date) => ({ ...date, endDate: moment() }));
       }
 
       default:

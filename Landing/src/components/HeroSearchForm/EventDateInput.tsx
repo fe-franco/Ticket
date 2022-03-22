@@ -11,10 +11,10 @@ import ClearDataButton from "./ClearDataButton";
 
 export interface EventDateInputProps {
   label?:string
-  defaultValue: moment.Moment | null;
+  defaultValue: moment.Moment;
   defaultTimeValue: TimeRage;
   sub: string
-  onChange?: (date: { startDate: moment.Moment | null ; stateTimeRage: TimeRage}) => void;
+  onChange?: (date: { startDate: moment.Moment ; stateTimeRage: TimeRage}) => void;
   defaultFocus?: boolean;
   fieldClassName?: string;
   onFocusChange: (focused: boolean) => void;
@@ -62,9 +62,6 @@ const EventDateInput: FC<EventDateInputProps> = ({
     onFocusChange && onFocusChange(arg.focused);
   };
 
-  const handleClearData = () => {
-    setStartDate(null);
-  };
 
   const renderEditTime = (field: Fields) => {
     const times = [
@@ -229,9 +226,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
           <span className="block mt-1 text-sm text-neutral-400 leading-none font-light">
             {sub}
           </span>
-          {startDate && focused && (
-            <ClearDataButton onClick={() => handleClearData()} />
-          )}
+          {startDate && focused}
         </div>
       </div>
     );
@@ -242,7 +237,7 @@ const EventDateInput: FC<EventDateInputProps> = ({
       <div className="absolute inset-x-1 bottom-0">
         <SingleDatePicker
           date={startDate}
-          onDateChange={(date) => {setStartDate(date)}}
+          onDateChange={(date) => {setStartDate(date === null ? moment() : date )}}
           id={"nc-hero-EventDateInput-startDateId"}
           focused={focusedInput}
           daySize={windowSize.width > 425 ? 56 : undefined}

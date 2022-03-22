@@ -29,7 +29,7 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
 }) => {
   const tabs: EventTypeTab[] = ["Presencial", "Live", "Videoconferência"];
   const [tabActive, setTabActive] = useState<EventTypeTab>(currentTab);
-  const [selectedDay, setSelectedDay] = useState<moment.Moment | null>(
+  const [selectedDay, setSelectedDay] = useState<moment.Moment>(
     moment().add(2, "days")
   );
   const [timeRangeValue, setTimeRangeValue] = useState<TimeRage>({

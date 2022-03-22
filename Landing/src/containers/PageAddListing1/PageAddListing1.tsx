@@ -181,7 +181,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
         </CommonLayout>
         <div
           className={`" ${
-            windowSize.width > 1400 ? "col-span-2" : "col-span-1"
+            windowSize.width > 1200 ? "col-span-2" : "col-span-1"
           } flex w-full justify-center"`}
         >
           <TicketForm

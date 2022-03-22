@@ -7,8 +7,8 @@ import { FC } from "react";
 import moment from "moment";
 
 export interface DateRage {
-  startDate: moment.Moment | null;
-  endDate: moment.Moment | null;
+  startDate: moment.Moment;
+  endDate: moment.Moment;
 }
 
 export interface TimeRage {
@@ -33,8 +33,8 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
 
   // USE STATE
   const [dateRangeValue, setDateRangeValue] = useState<DateRage>({
-    startDate: null,
-    endDate: null,
+    startDate: moment(),
+    endDate: moment(),
   });
   const [timeRangeValue, setTimeRangeValue] = useState<TimeRage>({
     startTime: "10:00 AM",

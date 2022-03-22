@@ -8,8 +8,8 @@ import moment from "moment";
 import { FC } from "react";
 
 export interface DateRage {
-  startDate: moment.Moment | null;
-  endDate: moment.Moment | null;
+  startDate: moment.Moment;
+  endDate: moment.Moment;
 }
 
 export interface StaySearchFormProps {
@@ -32,8 +32,8 @@ const StaySearchForm: FC<StaySearchFormProps> = ({
   haveDefaultValue = false,
 }) => {
   const [dateRangeValue, setDateRangeValue] = useState<DateRage>({
-    startDate: null,
-    endDate: null,
+    startDate: moment(),
+    endDate: moment().add(4, "days"),
   });
   const [locationInputValue, setLocationInputValue] = useState("");
   const [guestValue, setGuestValue] = useState({});

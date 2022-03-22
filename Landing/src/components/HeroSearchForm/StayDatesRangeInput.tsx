@@ -8,6 +8,7 @@ import { DateRage } from "./StaySearchForm";
 import { FC } from "react";
 import ClearDataButton from "./ClearDataButton";
 import useWindowSize from "hooks/useWindowResize";
+import moment from "moment";
 
 type Fields = "checkIn" | "checkOut";
 
@@ -54,10 +55,10 @@ const StayDatesRangeInput: FC<StayDatesRangeInputProps> = ({
   const handleClearData = (field: Fields) => {
     switch (field) {
       case "checkIn": {
-        return setStateDate((date) => ({ ...date, startDate: null }));
+        return setStateDate((date) => ({ ...date, startDate: moment()}));
       }
       case "checkOut": {
-        return setStateDate((date) => ({ ...date, endDate: null }));
+        return setStateDate((date) => ({ ...date, endDate: moment()}));
       }
 
       default:

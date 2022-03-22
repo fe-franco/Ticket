@@ -25,7 +25,7 @@ const EventLocationForm: FC<EventLocationFormProps> = ({
 
   const [dateFocused, setDateFocused] = useState<boolean>(false);
   //
-  const [selectedDay, setSelectedDay] = useState<moment.Moment | null>(
+  const [selectedDay, setSelectedDay] = useState<moment.Moment>(
     moment().add(2, "days")
     );
   const [timeRangeValue, setTimeRangeValue] = useState<TimeRage>({
