@@ -1,20 +1,12 @@
 import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
 import React from "react";
-import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
-import SectionOurFeatures from "components/SectionOurFeatures/SectionOurFeatures";
 import SectionGridFeaturePlaces from "./SectionGridFeaturePlaces";
 import SectionHowItWork from "components/SectionHowItWork/SectionHowItWork";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
 import { TaxonomyType } from "data/types";
-import SectionGridAuthorBox from "components/SectionGridAuthorBox/SectionGridAuthorBox";
-import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGridCategoryBox";
 import SectionBecomeAnAuthor from "components/SectionBecomeAnAuthor/SectionBecomeAnAuthor";
-import SectionVideos from "./SectionVideos";
-import SectionClientSay from "components/SectionClientSay/SectionClientSay";
 import { Helmet } from "react-helmet";
-import ExperiencesSearchForm from "components/HeroSearchForm/ExperiencesSearchForm";
-import FormItem from "containers/PageAddListing1/FormItem";
 
 const DEMO_CATS: TaxonomyType[] = [
   {
@@ -73,7 +65,7 @@ const DEMO_CATS: TaxonomyType[] = [
   },
 ];
 
-const DEMO_CATS_2: TaxonomyType[] = [
+/*const DEMO_CATS_2: TaxonomyType[] = [
   {
     id: "1",
     href: "/listing-stay",
@@ -119,7 +111,7 @@ const DEMO_CATS_2: TaxonomyType[] = [
     thumbnail:
       "https://images.pexels.com/photos/7031413/pexels-photo-7031413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   },
-];
+];*/
 
 function PageHome() {
   return (

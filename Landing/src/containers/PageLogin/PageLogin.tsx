@@ -2,9 +2,7 @@ import React, { FC } from "react";
 import facebookSvg from "images/Facebook.svg";
 import googleSvg from "images/Google.svg";
 import { Helmet } from "react-helmet";
-import Input from "shared/Input/Input";
 import { Link } from "react-router-dom";
-import ButtonPrimary from "shared/Button/ButtonPrimary";
 
 export interface PageLoginProps {
   className?: string;

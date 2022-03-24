@@ -13,6 +13,7 @@ export interface ListInputProps {
   className?: string;
   autoFocus?: boolean;
   list: any;
+  object: any;
 }
 
 const ListInput: FC<ListInputProps> = ({
@@ -24,6 +25,7 @@ const ListInput: FC<ListInputProps> = ({
   placeHolder = "Local",
   desc = "Onde vai ser o Evento?",
   className = "nc-flex-1.5",
+  object,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -75,6 +77,20 @@ const ListInput: FC<ListInputProps> = ({
     setShowPopover(false);
   };
 
+  function removeItem(arr: any, value: any) {
+    var list : string[]= []
+    arr.forEach((ticket : any) => {
+      list.push(ticket.nome);
+    });
+    var index = list.indexOf(value);
+    if (list.length > 1) {
+      if (index !== -1) {
+        list.splice(index, 1);
+      }
+    }
+    return list;
+  }
+
   const renderRecentSearches = () => {
     return (
       <>
@@ -82,7 +98,7 @@ const ListInput: FC<ListInputProps> = ({
           Ingressos
         </h3>
         <div className="mt-2">
-          {list.map((item: any, index: number) => (
+          {removeItem(list, object.nome).map((item: any, index: number) => (
             <span
               onClick={() => handleSelectLocation(item)}
               key={item}
@@ -98,16 +114,16 @@ const ListInput: FC<ListInputProps> = ({
                 >
                   <path
                     d="M21 5H3C2.44772 5 2 5.44772 2 6V9.5H2.6C3.98071 9.5 5.1 10.6193 5.1 12C5.1 13.3807 3.98071 14.5 2.6 14.5H2V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V14.5H21.9C20.5193 14.5 19.4 13.3807 19.4 12C19.4 10.6193 20.5193 9.5 21.9 9.5H22V6C22 5.44772 21.5523 5 21 5Z"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M15 5V19"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-dasharray="3 3"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="3 3"
                   />
                 </svg>
               </span>
@@ -124,10 +140,13 @@ const ListInput: FC<ListInputProps> = ({
   const renderSearchValue = () => {
     return (
       <>
-        {list.map((item: any, index: number) => (
+        <h3 className="block mt-2 sm:mt-0 px-4 sm:px-8 font-semibold text-base sm:text-lg text-neutral-800 dark:text-neutral-100">
+          Ingressos
+        </h3>
+        {removeItem(list, object.nome).map((item: any, index: number) => (
           <span
             onClick={() => handleSelectLocation(item)}
-            key={item}
+            key={item + index}
             className="flex px-4 sm:px-8 items-center space-x-3 sm:space-x-4 py-4 sm:py-5 hover:bg-neutral-100 dark:hover:bg-neutral-700 cursor-pointer"
           >
             <span className="block text-neutral-400">
@@ -140,16 +159,16 @@ const ListInput: FC<ListInputProps> = ({
               >
                 <path
                   d="M21 5H3C2.44772 5 2 5.44772 2 6V9.5H2.6C3.98071 9.5 5.1 10.6193 5.1 12C5.1 13.3807 3.98071 14.5 2.6 14.5H2V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V14.5H21.9C20.5193 14.5 19.4 13.3807 19.4 12C19.4 10.6193 20.5193 9.5 21.9 9.5H22V6C22 5.44772 21.5523 5 21 5Z"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   d="M15 5V19"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-dasharray="3 3"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="3 3"
                 />
               </svg>
             </span>
@@ -169,7 +188,7 @@ const ListInput: FC<ListInputProps> = ({
         className={`flex flex-1 relative [ nc-hero-field-padding ] flex-shrink-0 items-center space-x-3 cursor-pointer focus:outline-none text-left  ${
           showPopover ? "shadow-2xl rounded-full dark:bg-neutral-800" : ""
         }`}
-      > 
+      >
         <div className="text-neutral-300 dark:text-neutral-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"

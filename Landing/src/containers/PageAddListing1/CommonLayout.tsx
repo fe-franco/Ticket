@@ -1,4 +1,3 @@
-import useWindowSize from "hooks/useWindowResize";
 import React from "react";
 import { FC } from "react";
 

@@ -7,7 +7,6 @@ import CardCategory3 from "components/CardCategory3/CardCategory3";
 import CardCategory4 from "components/CardCategory4/CardCategory4";
 import NextPrev from "shared/NextPrev/NextPrev";
 import CardCategory5 from "components/CardCategory5/CardCategory5";
-import FormItem from "containers/PageAddListing1/FormItem";
 import ExperiencesSearchForm from "components/HeroSearchForm/ExperiencesSearchForm";
 import useWindowSize from "hooks/useWindowResize";
 

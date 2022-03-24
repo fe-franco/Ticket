@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import imagePng from "images/hero-right-3.png";
-import HeroRealEstateSearchForm from "components/HeroSearchForm/HeroRealEstateSearchForm";
 import Avatar from "shared/Avatar/Avatar";
 
 export interface SectionHero2ArchivePageProps {

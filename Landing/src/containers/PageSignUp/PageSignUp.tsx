@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import facebookSvg from "images/Facebook.svg";
-import twitterSvg from "images/Twitter.svg";
 import googleSvg from "images/Google.svg";
 import { Helmet } from "react-helmet";
 import Input from "shared/Input/Input";
@@ -40,7 +39,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
               <a
                 key={index}
                 href={item.href}
-                className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
+                className="nc-will-change-transfo rm flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
               >
                 <img
                   className="flex-shrink-0"

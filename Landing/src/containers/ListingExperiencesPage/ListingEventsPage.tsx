@@ -1,8 +1,4 @@
-import BackgroundSection from "components/BackgroundSection/BackgroundSection";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
-import SectionSliderNewCategories from "components/SectionSliderNewCategories/SectionSliderNewCategories";
-import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
-import { TaxonomyType } from "data/types";
 import React, { FC } from "react";
 import SectionGridFilterCard from "./SectionGridFilterCard";
 import { Helmet } from "react-helmet";
@@ -11,7 +7,7 @@ export interface ListingExperiencesPageProps {
   className?: string;
 }
 
-const DEMO_CATS: TaxonomyType[] = [
+/*const DEMO_CATS: TaxonomyType[] = [
   {
     id: "1",
     href: "#",
@@ -62,7 +58,7 @@ const DEMO_CATS: TaxonomyType[] = [
       "https://images.pexels.com/photos/373290/pexels-photo-373290.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     listingType: "experiences",
   },
-];
+];*/
 
 const ListingExperiencesPage: FC<ListingExperiencesPageProps> = ({
   className = "",

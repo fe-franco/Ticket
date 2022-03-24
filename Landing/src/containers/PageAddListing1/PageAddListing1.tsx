@@ -15,37 +15,12 @@ export interface PageAddListing1Props {}
 const PageAddListing1: FC<PageAddListing1Props> = () => {
   const windowSize = useWindowSize();
 
-  const tickets: any = [];
-  const [ticketsList, setticketList] = useState(["1° Ingresso"]);
-
-  const addTicket = (lista: any) => {
-    lista.forEach((item: any) => {
-      if (item[7]) {
-        item[10] = item[12];
-        console.log("item[10] was changed");
-      }
-      const list = [item];
-      var ticket = list.map((item) => ({
-        nome: item[0],
-        price: item[1],
-        amount: item[2],
-        meiaN: item[0] + "-Meia",
-        meiaA: item[4],
-        meiaP: item[5],
-        startAfter: item[9],
-        dateRange: item[10],
-        timeRange: item[11],
-        desc: item[14],
-      }));
-
-      tickets.push(ticket[0]);
-      console.log(tickets);
-      return ticket[0];
-    });
-  };
+  const [ticketsList, setticketList] = useState([]);
+  const [eventData, setEventData] = useState();
 
   return (
     <div>
+      {console.log(ticketsList)}
       <div
         className={`mt-6 grid grid-cols-1 lg:grid-cols-2 gap-12 ${
           window.innerWidth > 600 ? "px-10" : "px-5"
@@ -220,10 +195,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
           <span className="ml-3">Pré-visualizar</span>
         </ButtonSecondary>
 
-        <ButtonPrimary
-          className="mx-5 sm:mx-1 my-5 min-width-100"
-          onClick={() => addTicket(ticketsList)}
-        >
+        <ButtonPrimary className="mx-5 sm:mx-1 my-5 min-width-100">
           <svg
             width="24px"
             height="24px"
@@ -232,8 +204,8 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M19.8198 6.19526C20.0601 6.45561 20.0601 6.87772 19.8198 7.13807L9.9736 17.8047C9.73328 18.0651 9.34364 18.0651 9.10332 17.8047L4.18024 12.4714C3.93992 12.2111 3.93992 11.7889 4.18024 11.5286C4.42056 11.2682 4.8102 11.2682 5.05053 11.5286L9.53846 16.3905L18.9495 6.19526C19.1898 5.93491 19.5794 5.93491 19.8198 6.19526Z"
               fill="#ffffff"
             />
