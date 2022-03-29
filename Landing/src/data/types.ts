@@ -112,6 +112,7 @@ export interface EventDataType {
   };
 }
 
+
 //
 export interface CarDataType {
   id: string | number;
@@ -138,3 +139,24 @@ export interface CarDataType {
     lng: number;
   };
 }
+
+//
+export interface EventsDataType {
+  id: string | number;
+  author: AuthorType;
+  href: string;
+  title: string;
+  category: string;
+  featuredImage: string;
+  description: string;
+  listingCategory: "presencial" | "live" | "conferencia";
+  date: moment.Moment;
+  address: string;
+  localName: string;
+  map: {
+    lat: number;
+    lng: number;
+  };
+  tickets: object[];
+}
+

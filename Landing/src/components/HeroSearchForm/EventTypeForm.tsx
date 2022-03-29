@@ -8,7 +8,6 @@ import "react-dates/initialize";
 import Input from "shared/Input/Input";
 import EventDateInput from "./EventDateInput";
 import EventLocationForm from "./EventLocationForm";
-import LocationInput from "./LocationInput";
 import RealEstateSearchForm from "./RealEstateSearchForm";
 import { TimeRage } from "./RentalCarSearchForm";
 

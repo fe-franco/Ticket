@@ -1,9 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import { DEMO_EVENTS_LISTINGS, DEMO_STAY_LISTINGS } from "data/listings";
-import { EventDataType, StayDataType } from "data/types";
+import { DEMO_EVENTS_LISTINGS} from "data/listings";
+import { EventDataType } from "data/types";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
-import HeaderFilter from "./HeaderFilter";
-import StayCard from "components/StayCard/StayCard";
 import ExperiencesCard from "components/ExperiencesCard/ExperiencesCard";
 import Heading from "components/Heading/Heading";
 import ButtonSecondary from "shared/Button/ButtonSecondary";

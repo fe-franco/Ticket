@@ -6,7 +6,6 @@ import useWindowSize from "hooks/useWindowResize";
 import { TimeRage } from "./RentalCarSearchForm";
 import { Listbox } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
-import ClearDataButton from "./ClearDataButton";
 
 
 export interface EventDateInputProps {

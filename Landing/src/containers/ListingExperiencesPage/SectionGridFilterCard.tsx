@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import { DEMO_EVENTS_LISTINGS } from "data/listings";
 import { EventDataType } from "data/types";
-import Pagination from "shared/Pagination/Pagination";
 import Heading2 from "components/Heading/Heading2";
 import ExperiencesCard from "components/ExperiencesCard/ExperiencesCard";
 import ExperiencesSearchForm from "components/HeroSearchForm/ExperiencesSearchForm";

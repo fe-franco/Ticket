@@ -9,18 +9,60 @@ import ButtonPrimary from "shared/Button/ButtonPrimary";
 import EventTypeForm from "components/HeroSearchForm/EventTypeForm";
 import TicketForm from "components/HeroSearchForm/TicketForm";
 import useWindowSize from "hooks/useWindowResize";
+import { AuthorType, EventsDataType } from "data/types";
+import { DEMO_AUTHORS } from "data/authors";
+import moment from "moment";
 
 export interface PageAddListing1Props {}
 
 const PageAddListing1: FC<PageAddListing1Props> = () => {
   const windowSize = useWindowSize();
-
   const [ticketsList, setticketList] = useState([]);
-  const [eventData, setEventData] = useState();
+  var eventData: EventsDataType = {
+    id: DEMO_AUTHORS[1].id + (Math.floor(Math.random() * 100) + 1).toString(),
+    author: DEMO_AUTHORS[1],
+    href: DEMO_AUTHORS[1].href + "/",
+    title: "",
+    category: "",
+    featuredImage: "",
+    description: "",
+    listingCategory: "presencial",
+    date: moment(),
+    address: "",
+    localName: "",
+    map: {
+      lat: 0,
+      lng: 0,
+    },
+    tickets: ticketsList,
+  };
+
+  const categories = [
+    "Música",
+    "Acadêmico e científico",
+    "Artesanato",
+    "Casa e estilo de vida",
+    "Cinema, fotografia",
+    "Design, métricas e produtos digitais",
+    "Teatro, stand up e dança",
+    "Direito e legislação",
+    "Empreendedorismo, negócios e inovação",
+    "Esportes",
+    "Games e geek",
+    "Gastronomia, comidas e bebidas",
+    "Governo e política",
+    "Informática, tecnologia e programação",
+    "Marketing e vendas",
+    "Moda e beleza",
+    "Religião, espiritualidade",
+    "Saúde, nutrição e bem-estar",
+    "Sociedade e cultura",
+    "Outro",
+  ];
 
   return (
     <div>
-      {console.log(ticketsList)}
+      {console.log(eventData)}
       <div
         className={`mt-6 grid grid-cols-1 lg:grid-cols-2 gap-12 ${
           window.innerWidth > 600 ? "px-10" : "px-5"
@@ -39,62 +81,14 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                 }
               >
                 <FormItem className="w-full lg:w-1/2" label="Nome do evento">
-                  <Input />
+                  <Input onChange={(e) => (eventData.title = e.target.value)} />
                 </FormItem>
                 <FormItem className="w-full lg:w-1/2" label="Categoria">
                   <div className="border rounded-2xl border-neutral-200 dark:border-neutral-700">
-                    <Select>
-                      <option value="Acadêmico e científico">
-                        Acadêmico e científico
-                      </option>
-                      <option value="Artesanato">Artesanato</option>
-                      <option value="Casa e estilo de vida">
-                        Casa e estilo de vida
-                      </option>
-                      <option value="Cinema, fotografia">
-                        Cinema, fotografia
-                      </option>
-                      <option value="Desenvolvimento pessoal">
-                        Desenvolvimento pessoal
-                      </option>
-                      <option value="Design, métricas e produtos digitais">
-                        Design, métricas e produtos digitais
-                      </option>
-                      <option value=" Teatro, stand up e dança">
-                        Teatro, stand up e dança
-                      </option>
-                      <option value="Direito e legislação">
-                        Direito e legislação
-                      </option>
-                      <option value="Empreendedorismo, negócios e inovação">
-                        Empreendedorismo, negócios e inovação
-                      </option>
-                      <option value="Esportes">Esportes</option>
-                      <option value="Games e geek">Games e geek</option>
-                      <option value="Gastronomia, comidas e bebidas">
-                        Gastronomia, comidas e bebidas
-                      </option>
-                      <option value="Governo e política">
-                        Governo e política
-                      </option>
-                      <option value="Informática, tecnologia e programação">
-                        Informática, tecnologia e programação
-                      </option>
-                      <option value="Marketing e vendas">
-                        Marketing e vendas
-                      </option>
-                      <option value="Moda e beleza">Moda e beleza</option>
-                      <option value="Música">Música</option>
-                      <option value="Outro">Outro</option>
-                      <option value="Religião, espiritualidade">
-                        Religião, espiritualidade
-                      </option>
-                      <option value="Saúde, nutrição e bem-estar">
-                        Saúde, nutrição e bem-estar
-                      </option>
-                      <option value="Sociedade e cultura">
-                        Sociedade e cultura
-                      </option>
+                    <Select onChange={(e) => (eventData.category = e.target.value)}>
+                      {categories.map((category) => (
+                        <option value={category}>{category}</option>
+                      ))}
                     </Select>
                   </div>
                 </FormItem>
@@ -146,13 +140,14 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                   className="mt-2"
                   placeholder="..."
                   rows={windowSize.width > 1400 ? 13 : 6}
+                  onChange={(e) => (eventData.description = e.target.value)}
                 />
               </div>
             </div>
           </>
         </CommonLayout>
         <CommonLayout className="px-9" index="2. Local do Evento">
-          <EventTypeForm className="w-full" />
+          <EventTypeForm className="w-full" currentTab="Presencial"/>
         </CommonLayout>
         <div
           className={`" ${

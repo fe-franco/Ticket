@@ -1,12 +1,9 @@
 import React, { FC } from "react";
-import GallerySlider from "components/GallerySlider/GallerySlider";
 import { DEMO_EVENTS_LISTINGS } from "data/listings";
 import { EventDataType } from "data/types";
-import StartRating from "components/StartRating/StartRating";
 import { Link } from "react-router-dom";
 import BtnLikeIcon from "components/BtnLikeIcon/BtnLikeIcon";
 import SaleOffBadge from "components/SaleOffBadge/SaleOffBadge";
-import Badge from "shared/Badge/Badge";
 import NcImage from "shared/NcImage/NcImage";
 
 export interface ExperiencesCardProps {
@@ -25,19 +22,13 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
   ratioClass = "aspect-w-3 aspect-h-3",
 }) => {
   const {
-    galleryImgs,
     address,
     title,
     href,
     like,
     saleOff,
     featuredImage,
-    isAds,
     date,
-    price,
-    reviewStart,
-    reviewCount,
-    id,
   } = data;
 
   const renderSliderGallery = () => {
