@@ -13,7 +13,7 @@ const Select: FC<SelectProps> = ({
 }) => {
   return (
     <select
-      className={`${sizeClass} ${className} block w-full text-sm rounded-full bg-white border-none dark:bg-neutral-900`}
+      className={`${sizeClass} ${className} block w-full text-sm rounded-3xl bg-white border-none dark:bg-neutral-900`}
       {...args}
     >
       {children}

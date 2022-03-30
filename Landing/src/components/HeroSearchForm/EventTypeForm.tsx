@@ -1,9 +1,10 @@
 import LocationMarker from "components/AnyReactComponent/LocationMarker";
 import FormItem from "containers/PageAddListing1/FormItem";
+import { EventsDataType } from "data/types";
 import GoogleMapReact from "google-map-react";
 import useWindowSize from "hooks/useWindowResize";
 import moment from "moment";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "react-dates/initialize";
 import Input from "shared/Input/Input";
 import EventDateInput from "./EventDateInput";
@@ -11,22 +12,28 @@ import EventLocationForm from "./EventLocationForm";
 import RealEstateSearchForm from "./RealEstateSearchForm";
 import { TimeRage } from "./RentalCarSearchForm";
 
-export type EventTypeTab = "Presencial" | "Live" | "Videoconferência";
+export type EventTypeTab = EventsDataType["listingCategory"];
 
 export interface EventTypeFormProps {
   className?: string;
   currentTab?: EventTypeTab;
+  onTabChange?: (tab: EventTypeTab) => void;
+  onChange?: (e: {
+    localName: string;
+    address: string;
+    date: moment.Moment;
+    complement: string;
+    url: string;
+  }) => void;
 }
-
-const currentTab = "";
-const currentPage = "";
-const isArchivePage = !!currentPage && !!currentTab;
 
 const EventTypeForm: FC<EventTypeFormProps> = ({
   className = "",
   currentTab = "Presencial",
+  onTabChange,
+  onChange,
 }) => {
-  const tabs: EventTypeTab[] = ["Presencial", "Live", "Videoconferência"];
+  const tabs: EventTypeTab[] = ["Presencial", "Live", "Conferencia"];
   const [tabActive, setTabActive] = useState<EventTypeTab>(currentTab);
   const [selectedDay, setSelectedDay] = useState<moment.Moment>(
     moment().add(2, "days")
@@ -35,6 +42,31 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
     startTime: moment().hour().toString() + ":00",
     endTime: moment().hour().toString() + ":00",
   });
+
+  const [mapCoords, setMapCoords] = useState({lat: -23.5421864 , lng: -46.6353882});
+  const [address , setAddress] = useState("");
+
+  var localName: string = "";
+  var complement: string = "";
+  var url: string = "";
+
+  useEffect(() => {
+    if (onTabChange) {
+      onTabChange(tabActive);
+    }
+  }, [tabActive]);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        localName: localName,
+        address: address,
+        date: selectedDay,
+        complement: complement,
+        url: url,
+      });
+    }
+  }, [localName, address, selectedDay, complement, url]);
 
   const windowSize = useWindowSize();
 
@@ -80,16 +112,32 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
               }
             >
               <FormItem className="w-full lg:w-1/2" label="Nome do Local">
-                <Input />
+                <Input
+                  onChange={(e) => {
+                    localName = e.target.value;
+                  }}
+                />
               </FormItem>
               <FormItem className="w-full lg:w-1/2" label="Complemento">
-                <Input />
+                <Input
+                  onChange={(e) => {
+                    complement = e.target.value;
+                  }}
+                />
               </FormItem>
             </div>
-            <EventLocationForm className="" haveDefaultValue={isArchivePage} />
+            <EventLocationForm
+              className=""
+              onChange={(e) => {
+               setAddress(e.address);
+                setSelectedDay(e.date);
+                setMapCoords(e.coords);
+              }}
+            />
+
             <div>
               <span className="block text-sm text-neutral-500 dark:text-neutral-400">
-                1110 Pennsylvania Avenue NW, Washington, DC 20230
+                {address}
               </span>
               <div className="mt-4">
                 <div className="aspect-w-7 aspect-h-5 sm:aspect-h-3">
@@ -100,12 +148,10 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
                       }}
                       defaultZoom={15}
                       yesIWantToUseGoogleMapApiInternals
-                      defaultCenter={{
-                        lat: 55.9607277,
-                        lng: 36.2172614,
-                      }}
+                      center={mapCoords}
+                      defaultCenter={mapCoords}
                     >
-                      <LocationMarker lat={55.9607277} lng={36.2172614} />
+                      <LocationMarker lat={mapCoords.lat} lng={mapCoords.lng} />
                     </GoogleMapReact>
                   </div>
                 </div>
@@ -116,7 +162,13 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
 
       case "Live":
         return (
-          <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start">
+          <div
+            className={
+              window.innerWidth > 600
+                ? "flex items-strech space-x-10"
+                : "space-y-8"
+            }
+          >
             {/* ITEM */}
             <FormItem className="w-full lg:w-1/2" label="Link da Live">
               <Input />
@@ -141,9 +193,15 @@ const EventTypeForm: FC<EventTypeFormProps> = ({
             </FormItem>
           </div>
         );
-      case "Videoconferência":
+      case "Conferencia":
         return (
-          <div className="space-y-5 lg:space-x-10 flex flex-col lg:flex-row items-start lgitems-end">
+          <div
+            className={
+              window.innerWidth > 600
+                ? "flex items-strech space-x-10"
+                : "space-y-8"
+            }
+          >
             {/* ITEM */}
             <FormItem className="w-full lg:w-1/2" label="Link da conferência">
               <Input />

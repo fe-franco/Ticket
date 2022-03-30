@@ -9,7 +9,7 @@ import ButtonPrimary from "shared/Button/ButtonPrimary";
 import EventTypeForm from "components/HeroSearchForm/EventTypeForm";
 import TicketForm from "components/HeroSearchForm/TicketForm";
 import useWindowSize from "hooks/useWindowResize";
-import { AuthorType, EventsDataType } from "data/types";
+import { EventsDataType } from "data/types";
 import { DEMO_AUTHORS } from "data/authors";
 import moment from "moment";
 
@@ -26,18 +26,19 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     category: "",
     featuredImage: "",
     description: "",
-    listingCategory: "presencial",
+    listingCategory: "Presencial",
     date: moment(),
     address: "",
     localName: "",
     map: {
-      lat: 0,
-      lng: 0,
+      lat: -23.5421864,
+      lng: -46.6353882,
     },
     tickets: ticketsList,
   };
 
   const categories = [
+    "Selecione uma categoria",
     "Música",
     "Acadêmico e científico",
     "Artesanato",
@@ -60,13 +61,17 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     "Outro",
   ];
 
+  // create event object
+  const createEvent = () => {
+    console.log(eventData);
+  };
+
   return (
     <div>
-      {console.log(eventData)}
       <div
         className={`mt-6 grid grid-cols-1 lg:grid-cols-2 gap-12 ${
           window.innerWidth > 600 ? "px-10" : "px-5"
-        } items-center`}
+        }`}
       >
         <CommonLayout className="px-9" index="1. Informações do evento">
           <>
@@ -85,9 +90,13 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
                 </FormItem>
                 <FormItem className="w-full lg:w-1/2" label="Categoria">
                   <div className="border rounded-2xl border-neutral-200 dark:border-neutral-700">
-                    <Select onChange={(e) => (eventData.category = e.target.value)}>
+                    <Select
+                      onChange={(e) => (eventData.category = e.target.value)}
+                    >
                       {categories.map((category) => (
-                        <option value={category}>{category}</option>
+                        <option key={category} value={category}>
+                          {category}
+                        </option>
                       ))}
                     </Select>
                   </div>
@@ -147,7 +156,12 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
           </>
         </CommonLayout>
         <CommonLayout className="px-9" index="2. Local do Evento">
-          <EventTypeForm className="w-full" currentTab="Presencial"/>
+          <EventTypeForm
+            className="w-full"
+            currentTab={eventData.listingCategory}
+            onTabChange={(e) => (eventData.listingCategory = e)}
+            onChange={(e) => (eventData.localName = e.localName)}
+          />
         </CommonLayout>
         <div
           className={`" ${
@@ -190,7 +204,10 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
           <span className="ml-3">Pré-visualizar</span>
         </ButtonSecondary>
 
-        <ButtonPrimary className="mx-5 sm:mx-1 my-5 min-width-100">
+        <ButtonPrimary
+          onClick={createEvent}
+          className="mx-5 sm:mx-1 my-5 min-width-100"
+        >
           <svg
             width="24px"
             height="24px"

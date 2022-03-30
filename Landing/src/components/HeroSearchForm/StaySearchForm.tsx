@@ -57,7 +57,7 @@ const StaySearchForm: FC<StaySearchFormProps> = ({
       <form className="w-full relative mt-8 flex flex-col md:flex-row md:items-center rounded-3xl lg:rounded-full shadow-xl dark:shadow-2xl bg-white dark:bg-neutral-900 divide-y divide-neutral-200 dark:divide-neutral-700 md:divide-y-0">
         <LocationInput
           defaultValue={locationInputValue}
-          onChange={(e) => setLocationInputValue(e)}
+          onChange={(e) => setLocationInputValue(e.address)}
           onInputDone={() => setDateFocused("startDate")}
         />
         <StayDatesRangeInput

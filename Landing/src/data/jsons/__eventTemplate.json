@@ -1,18 +1,18 @@
   {
     "id": "",
-    "author": AuthorType,
-    "href": string,
-    "title": string,
-    "category": string,
-    "featuredImage": string,
-    "description": string,
-    "listingCategory": TaxonomyType,
-    "date": moment.Moment,
-    "address": string,
-    "local": string,
+    "author": {},
+    "href": "string",
+    "title": "string",
+    "category": "string",
+    "featuredImage": "string",
+    "description": "string",
+    "listingCategory": {},
+    "date": {},
+    "address": "string",
+    "local": "string",
     "map": {
-      "lat": number,
-      "lng": number,
+      "lat": 1,
+      "lng": 1
     },
-    "tickets": object[],
+    "tickets": [{}]
   }

@@ -149,7 +149,7 @@ export interface EventsDataType {
   category: string;
   featuredImage: string;
   description: string;
-  listingCategory: "presencial" | "live" | "conferencia";
+  listingCategory: "Presencial" | "Live" | "Conferencia";
   date: moment.Moment;
   address: string;
   localName: string;

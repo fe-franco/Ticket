@@ -86,20 +86,10 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
           type="checkbox"
           className="focus:ring-action-primary h-6 w-6 text-primary-500 border-primary rounded border-neutral-500 bg-white dark:bg-neutral-700  dark:checked:bg-primary-500 focus:ring-primary-500"
           onChange={(e) => {
-            obj.checkboxes[name] = e.target.checked
+            obj.checkboxes[name] = e.target.checked;
             setComponents([...components]);
           }}
-          disabled={
-            arr
-              ? lote.length > 1
-                ? false
-                : true
-              : minValue
-              ? components[index].valor >= 2.5
-                ? false
-                : true
-              : false
-          }
+          checked={obj.checkboxes[name]}
         />
         {label && (
           <label
@@ -121,6 +111,9 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
   };
 
   const renderMeia = (obj: any, i: any) => {
+    if (obj.valor === 0 || obj.valor === undefined || isNaN(obj.valor)) {
+      obj.checkboxes.meia = false;
+    }
     if (obj.checkboxes.meia) {
       obj.vmeia = obj.valor / 2;
       return (
@@ -151,14 +144,17 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
             )}
             <div className="mt-2">
               <div className="relative">
-                <div className="absolute inset-y-0  left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <span className="text-gray-500">R$ </span>
                 </div>
                 <Input
                   className="!pl-8 !pr-10"
-                  value={(obj.valor / 2).toFixed(2).toString()}
+                  value={(obj.valor === 0 || isNaN(obj.valor) ? 0 : obj.vmeia)
+                    .toFixed(2)
+                    .toString()}
                   readOnly={true}
                   type="number"
+                  min="0"
                 />
               </div>
             </div>
@@ -166,11 +162,12 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
           <FormItem label={windowSize.width > 1200 ? "" : "Quantidade"}>
             <Input
               type="number"
+              min="0"
               value={
                 components[i].qmeia === baseTicket.qmeia ||
                 components[i].qmeia === 0
                   ? ""
-                  : components[i].qmeia
+                  : checkNegative(components[i].qmeia)
               }
               onChange={(e) => {
                 obj.qmeia = e.target.valueAsNumber;
@@ -186,6 +183,14 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
   };
 
   const renderTaxa = (obj: any, i: any, isMeia: boolean) => {
+    if (
+      obj.valor < 2.5 ||
+      obj.valor < 2.5 ||
+      isNaN(obj.valor) ||
+      isNaN(obj.vmeia)
+    ) {
+      obj.checkboxes.absorver = false;
+    }
     if (isMeia) {
       var valor = obj.vmeia;
     } else {
@@ -201,11 +206,15 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
     if (obj.checkboxes.absorver) {
       valor = valor - taxa;
     }
+    if (isNaN(valor)) {
+      valor = 0;
+      taxa = 0;
+    }
     return (
       <div className="flex-row flex justify-end">
         {/*Code Block for white tooltip starts*/}
         <div
-          className="relative mt-20 md:mt-0"
+          className="relative mt-1"
           onMouseEnter={() => {
             obj.utils.mouseOnTax = 1;
             setComponents([...components]);
@@ -215,14 +224,14 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
             setComponents([...components]);
           }}
         >
-          <div className="mr-2 text-gray-500 cursor-pointer flex justify-end">
+          <div className="mr-2 text-gray-500 cursor-pointer flex justify-center items-center">
             <span className="">
               {"Valor Final R$" + (valor + taxa).toFixed(2)}
             </span>
             <svg
               aria-haspopup="true"
               xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-info-circle"
+              className="icon icon-tabler icon-tabler-info-circle ml-1"
               width={25}
               height={25}
               viewBox="0 0 24 24"
@@ -239,11 +248,8 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
             </svg>
           </div>
           {obj.utils.mouseOnTax === 1 && (
-            <div
-              role="tooltip"
-              className="z-20 flex justify-center -mt-1 w-64 absolute transition duration-150 ease-in-out left-0 ml-8"
-            >
-              <span className="px-3 shadow-lg rounded-2xl bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700">
+            <div role="tooltip" className="z-20 min-w-full absolute">
+              <span className="px-3 flex shadow-lg rounded-2xl bg-white border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700">
                 Preço: R${valor.toFixed(2)} + Taxa: R$
                 {taxa.toFixed(2)}
               </span>
@@ -265,7 +271,7 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
 
   const getTicketsName = () => {
     setLote([]);
-    var nameArr : string[] = [];
+    var nameArr: string[] = [];
     components.forEach((ticket) => {
       nameArr.push(ticket.nome);
     });
@@ -279,6 +285,29 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
     return components[index].utils.focus;
   };
 
+  function removelistItem(arr: any, value: any) {
+    var list: string[] = ["Selecione um ingresso"];
+    arr.forEach((ticket: any) => {
+      list.push(ticket.nome);
+    });
+    var index = list.indexOf(value);
+    if (list.length > 1) {
+      if (index !== -1) {
+        list.splice(index, 1);
+      }
+    }
+    return list;
+  }
+
+  // check if valor is negative
+  const checkNegative = (value: number) => {
+    if (value < 0) {
+      return value * -1;
+    } else {
+      return value;
+    }
+  };
+
   const renderForm = () => {
     return (
       <CommonLayout className="w-full" index="3. Ingressos">
@@ -289,7 +318,10 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
           }   justify-center items-start`}
         >
           {components.map((item, i) => (
-            <div className="relative flex-shrink-0 items-center">
+            <div
+              key={item.nome + i}
+              className="relative flex-shrink-0 items-center"
+            >
               <div
                 className={`absolute inset-y-1 right-3 top-0 ${
                   components.length > 1 ? "" : "hidden"
@@ -351,9 +383,10 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
                               components[i].valor === baseTicket.valor ||
                               components[i].valor === 0
                                 ? ""
-                                : components[i].valor
+                                : checkNegative(components[i].valor)
                             }
                             type="number"
+                            min="0"
                             step=".01"
                             onChange={(e) => {
                               item.valor = e.target.valueAsNumber;
@@ -368,11 +401,12 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
                       <Input
                         placeholder="0"
                         type="number"
+                        min="0"
                         value={
                           components[i].quatidade === baseTicket.quatidade ||
                           components[i].quatidade === 0
                             ? ""
-                            : components[i].quatidade
+                            : checkNegative(components[i].quatidade)
                         }
                         onChange={(e) => {
                           components[i].quatidade = e.target.valueAsNumber;
@@ -459,57 +493,13 @@ const TicketForm: FC<TicketFormProps> = ({ defaultValue, onChange }) => {
                         }
                       >
                         <Select className="outline-none">
-                          <option value="Acadêmico e científico">
-                            Acadêmico e científico
-                          </option>
-                          <option value="Artesanato">Artesanato</option>
-                          <option value="Casa e estilo de vida">
-                            Casa e estilo de vida
-                          </option>
-                          <option value="Cinema, fotografia">
-                            Cinema, fotografia
-                          </option>
-                          <option value="Desenvolvimento pessoal">
-                            Desenvolvimento pessoal
-                          </option>
-                          <option value="Design, métricas e produtos digitais">
-                            Design, métricas e produtos digitais
-                          </option>
-                          <option value=" Teatro, stand up e dança">
-                            Teatro, stand up e dança
-                          </option>
-                          <option value="Direito e legislação">
-                            Direito e legislação
-                          </option>
-                          <option value="Empreendedorismo, negócios e inovação">
-                            Empreendedorismo, negócios e inovação
-                          </option>
-                          <option value="Esportes">Esportes</option>
-                          <option value="Games e geek">Games e geek</option>
-                          <option value="Gastronomia, comidas e bebidas">
-                            Gastronomia, comidas e bebidas
-                          </option>
-                          <option value="Governo e política">
-                            Governo e política
-                          </option>
-                          <option value="Informática, tecnologia e programação">
-                            Informática, tecnologia e programação
-                          </option>
-                          <option value="Marketing e vendas">
-                            Marketing e vendas
-                          </option>
-                          <option value="Moda e beleza">Moda e beleza</option>
-                          <option value="Música">Música</option>
-                          <option value="Outro">Outro</option>
-                          <option value="Religião, espiritualidade">
-                            Religião, espiritualidade
-                          </option>
-                          <option value="Saúde, nutrição e bem-estar">
-                            Saúde, nutrição e bem-estar
-                          </option>
-                          <option value="Sociedade e cultura">
-                            Sociedade e cultura
-                          </option>
+                          {removelistItem(components, components[i].nome).map(
+                            (category) => (
+                              <option key={category} value={category}>
+                                {category}
+                              </option>
+                            )
+                          )}
                         </Select>
                       </div>
                       <EventDateInput

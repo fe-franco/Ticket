@@ -118,7 +118,7 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
             <div className="relative flex flex-col nc-flex-2-auto [ nc-divide-field ] ">
               <LocationInput
                 defaultValue={pickUpInputValue}
-                onChange={(e) => setPickUpInputValue(e)}
+                onChange={(e) => setPickUpInputValue(e.address)}
                 onInputDone={() =>
                   setFieldFocused(
                     dropOffLocationType === "different"
@@ -132,7 +132,7 @@ const RentalCarSearchForm: FC<RentalCarSearchFormProps> = ({
               {dropOffLocationType === "different" && (
                 <LocationInput
                   defaultValue={dropOffInputValue}
-                  onChange={(e) => setDropOffInputValue(e)}
+                  onChange={(e) => setDropOffInputValue(e.address)}
                   onInputDone={() => setFieldFocused("startDate")}
                   placeHolder="City or Airport"
                   desc="Drop off location"

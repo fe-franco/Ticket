@@ -97,7 +97,7 @@ const ExperiencesSearchForm: FC<ExperiencesSearchFormProps> = ({
 				</div>
 				<LocationInput
 					defaultValue={locationInputValue}
-					onChange={(e) => setLocationInputValue(e)}
+					onChange={(e) => setLocationInputValue(e.address)}
 					onInputDone={() => setDateFocused(true)}
 					placeHolder="Cidade"
 				/>

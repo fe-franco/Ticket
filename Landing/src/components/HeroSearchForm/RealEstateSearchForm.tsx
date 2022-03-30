@@ -30,7 +30,7 @@ const RealEstateSearchForm: FC<RealEstateSearchFormProps> = ({
       <form className="w-full relative xl:mt-8 flex flex-col lg:flex-row lg:items-center rounded-3xl lg:rounded-full shadow-xl dark:shadow-2xl bg-white dark:bg-neutral-900 divide-y divide-neutral-200 dark:divide-neutral-700 lg:divide-y-0">
         <LocationInput
           defaultValue={locationInputValue}
-          onChange={(e) => setLocationInputValue(e)}
+          onChange={(e) => setLocationInputValue(e.address)}
         />
 
         <PropertyTypeSelect />
